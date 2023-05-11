@@ -1,17 +1,40 @@
 <?php
 
-use App\Http\Controllers\User\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\User\Auth\ConfirmablePasswordController;
-use App\Http\Controllers\User\Auth\EmailVerificationNotificationController;
-use App\Http\Controllers\User\Auth\EmailVerificationPromptController;
-use App\Http\Controllers\User\Auth\NewPasswordController;
-use App\Http\Controllers\User\Auth\PasswordController;
-use App\Http\Controllers\User\Auth\PasswordResetLinkController;
-use App\Http\Controllers\User\Auth\RegisteredUserController;
-use App\Http\Controllers\User\Auth\VerifyEmailController;
+use App\Http\Controllers\PaidMemberProfileController;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
-Route::middleware('guest:users')->group(function () {
+use App\Http\Controllers\PaidMember\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\PaidMember\Auth\ConfirmablePasswordController;
+use App\Http\Controllers\PaidMember\Auth\EmailVerificationNotificationController;
+use App\Http\Controllers\PaidMember\Auth\EmailVerificationPromptController;
+use App\Http\Controllers\PaidMember\Auth\NewPasswordController;
+use App\Http\Controllers\PaidMember\Auth\PasswordController;
+use App\Http\Controllers\PaidMember\Auth\PasswordResetLinkController;
+use App\Http\Controllers\PaidMember\Auth\RegisteredUserController;
+use App\Http\Controllers\PaidMember\Auth\VerifyEmailController;
+
+Route::get('/', function () {
+    return Inertia::render('PaidMember/Welcome', [
+        'canLogin' => Route::has('paid_member.login'),
+        'canRegister' => Route::has('paid_member.register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
+});
+
+Route::get('/dashboard', function () {
+    return Inertia::render('PaidMember/Dashboard');
+})->middleware(['auth:paid_members', 'verified'])->name('dashboard');
+
+Route::middleware('auth:paid_members')->group(function () {
+    Route::get('profile', [PaidMemberProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('profile', [PaidMemberProfileController::class, 'update'])->name('profile.update');
+    Route::delete('profile', [PaidMemberProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::middleware('guest:paid_members')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
                 ->name('register');
 
@@ -35,7 +58,7 @@ Route::middleware('guest:users')->group(function () {
                 ->name('password.store');
 });
 
-Route::middleware('auth:users')->group(function () {
+Route::middleware('auth:paid_members')->group(function () {
     Route::get('verify-email', EmailVerificationPromptController::class)
                 ->name('verification.notice');
 
