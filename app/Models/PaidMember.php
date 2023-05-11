@@ -17,8 +17,15 @@ class PaidMember extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'kana',
+        'tel',
         'email',
         'password',
+        'postcode',
+        'address',
+        'birthday',
+        'gender',
+        'memo'
     ];
 
     /**

@@ -32,15 +32,29 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:'.PaidMember::class,
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            // 'name' => 'required|string|max:255',
+            // 'kana' => 'required|string|max:255',
+            // 'tel' => 'required|string|max:255',
+            // 'email' => 'required|string|email|max:255|unique:'.PaidMember::class,
+            // 'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            // 'postcode' => 'required|string|max:255',
+            // 'address' => 'required|string|max:255',
+            // 'birthday' => 'date',
+            // 'gender' => 'required|tinyInt',
+            // 'memo' => 'text|max:1000',
         ]);
 
         Auth::guard('paid_members')->login($user = PaidMember::create([
             'name' => $request->name,
+            'kana' => $request->kana,
+            'tel' => $request->tel,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'postcode' => $request->postcode,
+            'address' => $request->address,
+            'birthday' => $request->birthday,
+            'gender' => $request->gender,
+            'memo' => $request->memo,
         ]));
 
         event(new Registered($user));
