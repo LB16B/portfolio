@@ -25,6 +25,10 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('/which_register', function () {
+    return Inertia::render('User/WhichRegister');
+})->name('which_register');
+
 Route::get('/dashboard', function () {
     return Inertia::render('User/Dashboard');
 })->middleware(['auth:users', 'verified'])->name('dashboard');

@@ -16,14 +16,14 @@ use App\Http\Controllers\PaidMember\Auth\RegisteredUserController;
 use App\Http\Controllers\PaidMember\Auth\VerifyEmailController;
 
 Route::get('/', function () {
-    // return Inertia::render('PaidMember/Welcome', [
-    return Inertia::render('PaidMember/UserHeader', [
+    return Inertia::render('PaidMember/Welcome', [
         'canLogin' => Route::has('paid_member.login'),
         'canRegister' => Route::has('paid_member.register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
+        // 'laravelVersion' => Application::VERSION,
+        // 'phpVersion' => PHP_VERSION,
     ]);
 });
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('PaidMember/Dashboard');
