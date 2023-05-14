@@ -1,4 +1,33 @@
+<script setup>
+import { Head, Link } from '@inertiajs/vue3';
+
+</script>
+
 <template>
+<Head title="プラン選択" />
+
+<header class="text-gray-600 body-font border-4 border-white  border-b-pink-500">
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center ">
+        <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-pink-500 rounded-full" viewBox="0 0 24 24">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+            <span class="ml-3 text-xl">Tailblocks</span>
+        </a>
+        <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
+            <a class="mr-5 hover:text-gray-900">First Link</a>
+            <a class="mr-5 hover:text-gray-900">Second Link</a>
+            <a class="mr-5 hover:text-gray-900">Third Link</a>
+            <a class="mr-5 hover:text-gray-900">Fourth Link</a>
+        </nav>
+        <button class="inline-flex items-center bg-gray-100 border-0 py-2 px-5 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
+        ログイン
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+            <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+        </button>
+    </div>
+</header>
 
 <section class="text-gray-600 body-font overflow-hidden ">
     <div class="container px-5 py-24 mx-auto ">
@@ -28,12 +57,14 @@
                             </svg>
                         </span>ブックマーク(上限あり)
                     </p>
-                    <button class="flex items-center mt-auto text-white bg-gray-400 border-0 py-2 px-4 w-full focus:outline-none hover:bg-gray-500 rounded">
-                        利用を開始する
+                    <Link
+                        :href="route('user.register')"
+                        class="flex items-center mt-auto text-white bg-gray-400 border-0 py-2 px-4 w-full focus:outline-none hover:bg-pink-600 rounded">
+                        会員登録
                         <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
-                            <path d="M5 12h14M12 5l7 7-7 7"></path>
+                        <path d="M5 12h14M12 5l7 7-7 7"></path>
                         </svg>
-                    </button>
+                    </Link>
             </div>
         </div>
 
@@ -88,13 +119,14 @@
                     </svg>
                 </span>お子さんにおススメレシピの配信
                 </p>
-                <button class="flex items-center mt-auto text-white bg-pink-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-pink-600 rounded">
-                    利用を開始する
-                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
+                    <Link
+                        :href="route('paid_member.register')"
+                        class="flex items-center mt-auto text-white bg-pink-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-pink-600 rounded">
+                        会員登録
+                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
                         <path d="M5 12h14M12 5l7 7-7 7"></path>
-                    </svg>
-                </button>
-                <!-- <p class="text-xs text-gray-500 mt-3">Literally you probably haven't heard of them jean shorts.</p> -->
+                        </svg>
+                    </Link>
             </div>
         </div>
 
