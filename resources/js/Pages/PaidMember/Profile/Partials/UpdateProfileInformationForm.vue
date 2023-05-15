@@ -11,7 +11,16 @@ const props = defineProps({
     status: String,
 });
 
+
+
 const user = usePage().props;
+
+const fileInfo = ref("");
+
+const fileSelected = (event) => {
+    fileInfo.value = event.target.files[0];
+    // console.log(event);
+};
 
 const form = useForm({
     name: user.name,
@@ -29,9 +38,22 @@ const form = useForm({
             </p>
         </header>
 
+        <form action="" @submit.prevent="form.patch(route('paid_member.profile.update'))" class="mt-6 space-y-6" enctype="multipart/form-data">
+            <div>
+                <img src="/images/no_image.jpg">
+            </div>
 
-        <!-- <form @submit.prevent="form.patch(route('paid_member.profile.update'))" class="mt-6 space-y-6"> -->
-        <form @submit.prevent="form.patch(route('paid_member.profile.update'))" class="mt-6 space-y-6">
+            <!-- <div id="upload">
+                <p>画像を選択</p>
+                <p><input type="file"></p>
+            </div> -->
+            <div class="content">
+                <h1>File Upload</h1>
+                <p><input type="file" @change="fileSelected" /></p>
+                <button @click="fileUpload">アップロード</button>
+            </div>
+
+
             <div>
                 <InputLabel for="name" value="Name" />
                 
@@ -84,7 +106,7 @@ const form = useForm({
             </div>
 
             <div class="flex items-center gap-4">
-                <PrimaryButton :disabled="form.processing">Save</PrimaryButton>
+                <PrimaryButton :disabled="form.processing" >Save</PrimaryButton>
 
 
                 <Transition enter-from-class="opacity-0" leave-to-class="opacity-0" class="transition ease-in-out">
@@ -95,3 +117,8 @@ const form = useForm({
         </form>
     </section>
 </template>
+
+<script>
+
+
+</script>

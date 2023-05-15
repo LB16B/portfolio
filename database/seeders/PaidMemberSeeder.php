@@ -16,10 +16,11 @@ class PaidMemberSeeder extends Seeder
      */
     public function run()
     {
-        // DB::table('paid_members')->insert([
-        //     'name' => 'test',
-        //     'email' => 'test@test.com',
-        //     'password' => Hash::make('password123')
-        //     ]);
+        DB::table('paid_members')->insert([
+            'name' => 'test',
+            'kana' => 'タナカ',
+            'email' => 'test@test.com',
+            'password' => Hash::make('password123')
+            ]);
     }
 }

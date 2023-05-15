@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             AdminSeeder::class,
-            // PaidMemberSeeder::class,
+            PaidMemberSeeder::class,
+            PaidMemberProfileSeeder::class,
         ]);
 
         // \App\Models\User::factory(10)->create();

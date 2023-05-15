@@ -17,14 +17,14 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('kana');
-            $table->string('tel')->unique();
+            $table->string('tel')->unique()->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('postcode');
-            $table->string('address');
+            $table->string('postcode')->nullable();
+            $table->string('address')->nullable();
             $table->date('birthday')->nullable();
-            $table->tinyInteger('gender'); // 0男性, 1女性、2その他
+            $table->tinyInteger('gender')->nullable(); // 0男性, 1女性、2その他
             $table->text('memo')->nullable();
             $table->rememberToken();
             $table->timestamps();
