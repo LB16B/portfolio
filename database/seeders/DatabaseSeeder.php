@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\PaidMemberDetail;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,7 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AdminSeeder::class,
             PaidMemberSeeder::class,
-            PaidMemberProfileSeeder::class,
+            PaidMemberDetailSeeder::class,
         ]);
 
         // \App\Models\User::factory(10)->create();

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\PaidMemberProfile;
+use App\Models\PaidMemberDetail;
 
 class PaidMember extends Authenticatable
 {
@@ -48,8 +48,8 @@ class PaidMember extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function Paid_member_profile()
+    public function Paid_member_detail()
     {
-        return $this->hasOne(PaidMemberProfile::class);
+        return $this->hasOne(PaidMemberDetail::class);
     }
 }

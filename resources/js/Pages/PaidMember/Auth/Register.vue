@@ -115,13 +115,6 @@ const fetchAddress = () => {
                 <label for="gender2" class="ml-2 mr-4">その他</label>
             </div>
 
-            <div>
-                <InputLabel for="text" value="file_path" />
-                <TextInput type="text" id="file_path" name="file_path" v-model="form.file_path" class="mt-1 block w-full" />
-                <!-- <InputError class="mt-2" :message="form.errors.tel" /> -->
-            </div>
-
-
 
             <div class="flex items-center justify-end mt-4">
                 <Link

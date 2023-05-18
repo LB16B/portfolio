@@ -6,6 +6,9 @@ use App\Models\PaidMember;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePaidMemberRequest;
 use App\Http\Requests\UpdatePaidMemberRequest;
+use App\Models\PaidMemberDetail;
+use Throwable;
+use Illuminate\Support\Facades\Log;
 
 class PaidMemberController extends Controller
 {
@@ -37,17 +40,42 @@ class PaidMemberController extends Controller
      */
     public function store(StorePaidMemberRequest $request)
     {
-        PaidMember::create([
-            'name' => $request->name,
-            'kana' => $request->kana,
-            'tel' => $request->tel,
-            'email' => $request->email,
-            'postcode' => $request->postcode,
-            'address' => $request->address,
-            'birthday' => $request->birthday,
-            'gender' => $request->gender,
-            'memo' => $request->memo,
-        ]);
+        try{
+            DB::transaction(function () use($request) {
+                $paid_member = PaidMember::create([
+                    'name' => $request->name,
+                    'kana' => $request->kana,
+                    'tel' => $request->tel,
+                    'email' => $request->email,
+                    'postcode' => $request->postcode,
+                    'address' => $request->address,
+                    'birthday' => $request->birthday,
+                    'gender' => $request->gender,
+                    'memo' => $request->memo,
+                ]);
+                
+                PaidMemberDetail::create([
+                    'paid_member_id' => $paid_member->id,
+                    'nick_name' => 'nick_name',
+                    'greeting' => '',
+                ]);
+            }, 2);
+        } catch( Throwable $e ){
+            Log::error($e);
+            throw $e;
+        }
+
+        // PaidMember::create([
+        //     'name' => $request->name,
+        //     'kana' => $request->kana,
+        //     'tel' => $request->tel,
+        //     'email' => $request->email,
+        //     'postcode' => $request->postcode,
+        //     'address' => $request->address,
+        //     'birthday' => $request->birthday,
+        //     'gender' => $request->gender,
+        //     'memo' => $request->memo,
+        // ]);
     }
 
     /**

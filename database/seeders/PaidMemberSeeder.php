@@ -18,7 +18,7 @@ class PaidMemberSeeder extends Seeder
     {
         DB::table('paid_members')->insert([
             'name' => 'test',
-            'kana' => 'タナカ',
+            'kana' => 'テスト',
             'email' => 'test@test.com',
             'password' => Hash::make('password123')
             ]);

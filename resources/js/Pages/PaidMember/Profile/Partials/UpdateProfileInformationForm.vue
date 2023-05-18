@@ -39,19 +39,6 @@ const form = useForm({
         </header>
 
         <form action="" @submit.prevent="form.patch(route('paid_member.profile.update'))" class="mt-6 space-y-6" enctype="multipart/form-data">
-            <div>
-                <img src="/images/no_image.jpg">
-            </div>
-
-            <!-- <div id="upload">
-                <p>画像を選択</p>
-                <p><input type="file"></p>
-            </div> -->
-            <div class="content">
-                <h1>File Upload</h1>
-                <p><input type="file" @change="fileSelected" /></p>
-                <button @click="fileUpload">アップロード</button>
-            </div>
 
 
             <div>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PaidMemberProfileController;
+use App\Http\Controllers\PaidMemberDetailController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -14,6 +15,7 @@ use App\Http\Controllers\PaidMember\Auth\PasswordController;
 use App\Http\Controllers\PaidMember\Auth\PasswordResetLinkController;
 use App\Http\Controllers\PaidMember\Auth\RegisteredUserController;
 use App\Http\Controllers\PaidMember\Auth\VerifyEmailController;
+use App\Models\PaidMemberDetail;
 
 Route::get('/', function () {
     return Inertia::render('PaidMember/Welcome', [
@@ -23,6 +25,11 @@ Route::get('/', function () {
         // 'phpVersion' => PHP_VERSION,
     ]);
 });
+
+
+
+Route::resource('/detail', PaidMemberDetailController::class)
+->middleware(['auth:paid_members', 'verified']);
 
 
 Route::get('/dashboard', function () {

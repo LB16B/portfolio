@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('paid_member_profiles', function (Blueprint $table) {
+        Schema::create('paid_member_details', function (Blueprint $table) {
             $table->id();
             $table->foreignId('paid_member_id')->constrained();
             $table->string('nick_name');
             $table->text('greeting');
-            $table->string('filename');
+            $table->string('filename')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('paid_member_profiles');
+        Schema::dropIfExists('paid_member_details');
     }
 };
