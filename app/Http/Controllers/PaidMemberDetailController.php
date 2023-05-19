@@ -56,21 +56,18 @@ class PaidMemberDetailController extends Controller
         $paid_member_detail->paid_member_id = $request->paid_member_id;
         $paid_member_detail->nick_name = $request->nick_name;
         $paid_member_detail->greeting = $request->greeting;
-
+        
 
         $fname = $request->file('file')->getClientOriginalName();
-        $disk = Storage::build([
-                                   'driver' => 'local',
-                                   'root' => public_path('images'),
-                               ]);
-
-        $disk->putFileAs('', $request->file('file'), $fname);
+        $request->file('file')->storeAs('public/images', $fname);
         $paid_member_detail->filename = $fname;
-
+        
+        dd($paid_member_detail);
+        
         $paid_member_detail->save();
 
         return redirect()->route('paid_member.dashboard');
-
+        
     }
 
 }
