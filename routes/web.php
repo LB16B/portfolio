@@ -16,23 +16,31 @@ use Inertia\Inertia;
 |
 */
 
+// Route::resource('/detail', PaidMemberDetailController::class)
+// ->middleware(['auth:paid_members', 'verified']);
+
+
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
+    return Inertia::render('User/Welcome', [
+        'canLogin' => Route::has('user.login'),
+        'canRegister' => Route::has('user.register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/which_register', function () {
+    return Inertia::render('User/WhichRegister');
+})->name('which_register');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::get('/dashboard', function () {
+    return Inertia::render('User/Dashboard');
+})->middleware(['auth:users', 'verified'])->name('dashboard');
+
+Route::middleware('auth:users')->group(function () {
+    Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 require __DIR__.'/auth.php';
