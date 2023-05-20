@@ -11,6 +11,7 @@ use Illuminate\Contracts\Cache\Store;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class PaidMemberDetailController extends Controller
 {
@@ -56,18 +57,25 @@ class PaidMemberDetailController extends Controller
         $paid_member_detail->paid_member_id = $request->paid_member_id;
         $paid_member_detail->nick_name = $request->nick_name;
         $paid_member_detail->greeting = $request->greeting;
-        
 
-        $fname = $request->file('file')->getClientOriginalName();
-        $request->file('file')->storeAs('public/images', $fname);
-        $paid_member_detail->filename = $fname;
-        
-        dd($paid_member_detail);
-        
+
+        // $fname = $request->file('file')->getClientOriginalName();
+        $fname = $request->file('file')->getClientOriginalExtension();
+        $disk = Storage::build([
+                'driver' => 'local',
+                'root' => public_path('paid_member_profile_images'),
+                // 'root' => public_path('images'),
+            ]);
+
+        $random_name = Str::random(15);
+        $hoge = date('Y-m-d') . $random_name . '.' . $fname;
+        $disk->putFileAs('', $request->file('file'), $hoge);
+        $paid_member_detail->filename = $hoge;
+
         $paid_member_detail->save();
 
         return redirect()->route('paid_member.dashboard');
-        
+
     }
 
 }

@@ -16,6 +16,10 @@ use Inertia\Inertia;
 |
 */
 
+// Route::resource('/detail', PaidMemberDetailController::class)
+// ->middleware(['auth:paid_members', 'verified']);
+
+
 Route::get('/', function () {
     return Inertia::render('User/Welcome', [
         'canLogin' => Route::has('user.login'),

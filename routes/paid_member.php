@@ -26,8 +26,6 @@ Route::get('/', function () {
     ]);
 });
 
-
-
 Route::resource('/detail', PaidMemberDetailController::class)
 ->middleware(['auth:paid_members', 'verified']);
 
