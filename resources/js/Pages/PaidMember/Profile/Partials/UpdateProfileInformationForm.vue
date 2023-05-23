@@ -25,6 +25,7 @@ const fileSelected = (event) => {
 const form = useForm({
     name: user.name,
     email: user.email,
+    kana: user.kana,
 });
 </script>
 

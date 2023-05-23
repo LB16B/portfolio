@@ -97,5 +97,7 @@ const updatePaidMemberDetail = id => {
                 </div>
             </div>
         </div>
+
+        
     </PaidMemberAuthenticatedLayout>
 </template>
