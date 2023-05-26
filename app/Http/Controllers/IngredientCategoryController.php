@@ -18,7 +18,11 @@ class IngredientCategoryController extends Controller
      */
     public function index()
     {
-        return Inertia::render('PaidMember/Recipe/Index', [
+        // return Inertia::render('PaidMember/Recipe/Index', [
+        //     'ingredient_categories' =>  IngredientCategory::select('id', 'name')
+        //     ->get()
+        // ]);
+        return Inertia::render('PaidMember/IngredientCategory/Index', [
             'ingredient_categories' =>  IngredientCategory::select('id', 'name')
             ->get()
         ]);
@@ -53,7 +57,10 @@ class IngredientCategoryController extends Controller
      */
     public function show(IngredientCategory $ingredientCategory)
     {
-        //
+        // dd($ingredientCategory);
+        return Inertia::render('PaidMember/IngredientCategory/Show', [
+            'ingredientCategory' =>  $ingredientCategory
+        ]);
     }
 
     /**

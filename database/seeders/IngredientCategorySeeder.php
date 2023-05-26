@@ -16,7 +16,51 @@ class IngredientCategorySeeder extends Seeder
     public function run()
     {
         DB::table('ingredient_categories')->insert([
-            'name' => '肉',
-            ]);
+            [
+            'name' => '主食 - ごはん',
+            ],
+            [
+            'name' => '主食 - パン',
+            ],
+            [
+            'name' => '主食 - 麺',
+            ],
+            [
+            'name' => 'おかず - 野菜',
+            ],
+            [
+            'name' => 'おかず - 芋',
+            ],
+            [
+            'name' => 'おかず - 豆腐',
+            ],
+            [
+            'name' => 'おかず - 豆',
+            ],
+            [
+            'name' => 'おかず - 乳製品',
+            ],
+            [
+            'name' => 'おかず - 卵',
+            ],
+            [
+            'name' => 'おかず - 魚',
+            ],
+            [
+            'name' => 'おかず - 肉',
+            ],
+            [
+            'name' => 'その他 - 果物',
+            ],
+            [
+            'name' => 'その他 - スープ',
+            ],
+            [
+            'name' => 'その他 - デザート',
+            ],
+            [
+            'name' => 'その他 - おやつ',
+            ],
+        ]);
     }
 }

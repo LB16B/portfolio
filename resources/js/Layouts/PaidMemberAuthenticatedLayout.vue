@@ -14,8 +14,10 @@ const showingNavigationDropdown = ref(false);
 <template>
     <!-- <Head title="Yum-Yum For baby" /> -->
 
-  <Header/>
+    <Header/>
+    <div class="min-h-screen bg-rose-50">
             <main>
                 <slot />
             </main>
+    </div>
 </template>
