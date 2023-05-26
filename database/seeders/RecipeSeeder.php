@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 
 class RecipeSeeder extends Seeder
@@ -14,6 +15,16 @@ class RecipeSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('recipes')->insert([
+            [
+                'title' => 'サラダ',
+            ],
+            [
+                'title' => 'スープ',
+            ],
+            [
+                'title' => 'ステーキ',
+            ],
+        ]);
     }
 }

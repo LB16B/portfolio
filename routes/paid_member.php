@@ -35,7 +35,7 @@ Route::resource('/detail', PaidMemberDetailController::class)
 Route::resource('/ingredient_category', IngredientCategoryController::class)
 ->middleware(['auth:paid_members', 'verified']);
 
-Route::resource('/recipe', RecipeController::class)
+Route::resource('/ingredient_category/recipe', RecipeController::class)
 ->middleware(['auth:paid_members', 'verified']);
 
 

@@ -1,11 +1,14 @@
 <script setup>
 import PaidMemberAuthenticatedLayout from '@/Layouts/PaidMemberAuthenticatedLayout.vue';
 import { Head} from '@inertiajs/vue3';
-import Recipe from '../Recipe/Index.vue';
+import Recipe from './Recipe/Index.vue';
 
 defineProps({
-    ingredientCategory: Object
+    ingredientCategory: Object,
+    recipe3: Array
 })
+
+// console.log(recipe);
 
 </script>
 
@@ -22,7 +25,8 @@ defineProps({
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     
                     <h1 class="flex justify-center py-8">{{ ingredientCategory.name }}のレシピ</h1>
-                    <Recipe />
+                    <Recipe :recipe3="recipe3" />
+
                 </div>
             </div>
         </div>
