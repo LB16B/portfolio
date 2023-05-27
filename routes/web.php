@@ -29,6 +29,7 @@ Route::get('/', function () {
     ]);
 });
 
+
 Route::get('/which_register', function () {
     return Inertia::render('User/WhichRegister');
 })->name('which_register');

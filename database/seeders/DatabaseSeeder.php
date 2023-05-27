@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             PaidMemberSeeder::class,
             PaidMemberDetailSeeder::class,
+            IngredientCategorySeeder::class,
         ]);
 
         // \App\Models\User::factory(10)->create();
