@@ -3,7 +3,10 @@
 use App\Http\Controllers\PaidMemberProfileController;
 use App\Http\Controllers\PaidMemberDetailController;
 use App\Http\Controllers\IngredientCategoryController;
+<<<<<<< HEAD
 use App\Http\Controllers\RecipeController;
+=======
+>>>>>>> 3cfa08d (test)
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -35,9 +38,12 @@ Route::resource('/detail', PaidMemberDetailController::class)
 Route::resource('/ingredient_category', IngredientCategoryController::class)
 ->middleware(['auth:paid_members', 'verified']);
 
+<<<<<<< HEAD
 Route::resource('/ingredient_category/recipe', RecipeController::class)
 ->middleware(['auth:paid_members', 'verified']);
 
+=======
+>>>>>>> 3cfa08d (test)
 
 Route::get('/dashboard', function () {
     return Inertia::render('PaidMember/Dashboard');

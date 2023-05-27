@@ -1,11 +1,13 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
+import IngredientCategory from './IngredientCategory/Index.vue';
 
 defineProps({
     canLogin: Boolean,
     canRegister: Boolean,
     laravelVersion: String,
     phpVersion: String,
+    ingredient_categories: Array
 });
 </script>
 
@@ -49,6 +51,9 @@ defineProps({
     </header>
 
 
+    <div>
+        <IngredientCategory />
+    </div>
 
 <div class="h-96"></div>
 

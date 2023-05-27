@@ -12,12 +12,20 @@ const showingNavigationDropdown = ref(false);
 </script>
 
 <template>
-    <!-- <Head title="Yum-Yum For baby" /> -->
+    <Header/>
 
+<<<<<<< HEAD
     <Header/>
     <div class="min-h-screen bg-rose-50">
             <main>
                 <slot />
             </main>
     </div>
+=======
+    <!-- Page Content -->
+    <main>
+        <slot />
+    </main>
+    
+>>>>>>> 3cfa08d (test)
 </template>

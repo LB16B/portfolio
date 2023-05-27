@@ -24,7 +24,11 @@ class UpdateIngredientCategoryRequest extends FormRequest
     public function rules()
     {
         return [
+<<<<<<< HEAD
             //
+=======
+            'name' => ['required', 'max:50'],
+>>>>>>> 3cfa08d (test)
         ];
     }
 }

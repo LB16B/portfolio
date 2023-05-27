@@ -24,12 +24,18 @@ const showingNavigationDropdown = ref(false);
                 </Link>
             <nav class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
                 <a class="mr-5 hover:text-gray-900">First Link</a>
+<<<<<<< HEAD
                 
                 <NavLink :href="route('paid_member.recipe.index')" :active="route().current('paid_member.recipe.index')">
                     レシピ               
                 </NavLink>
                 <NavLink :href="route('paid_member.ingredient_category.index')" :active="route().current('paid_member.ingredient_category.index')">
                     カテゴリー               
+=======
+                <a class="mr-5 hover:text-gray-900">Second Link</a>
+                <NavLink :href="route('paid_member.ingredient_category.index')" :active="route().current('paid_member.ingredient_category.index')">
+                    カテゴリー
+>>>>>>> 3cfa08d (test)
                 </NavLink>
                 <NavLink :href="route('paid_member.detail.index')" :active="route().current('paid_member.detail.index')">
                     プロフィール

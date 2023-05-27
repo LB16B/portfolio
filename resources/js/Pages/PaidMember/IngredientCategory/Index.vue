@@ -1,14 +1,19 @@
 <script setup>
+<<<<<<< HEAD
 import PaidMemberAuthenticatedLayout from '@/Layouts/PaidMemberAuthenticatedLayout.vue';
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import NavLink from '@/Components/NavLink.vue';
 
+=======
+import NavLink from '@/Components/NavLink.vue';
+>>>>>>> 3cfa08d (test)
 import { Inertia } from '@inertiajs/inertia'
 
 defineProps({
     ingredient_categories: Array
 })
 
+<<<<<<< HEAD
 //  :href="route('paid_member.ingredient_category.show', { ingredient_category: ingredient_category.id })"
 </script>
 
@@ -54,3 +59,13 @@ defineProps({
         
     </PaidMemberAuthenticatedLayout>
 </template>
+=======
+</script>
+
+<template>
+    <div v-for="ingredient_category in ingredient_categories" :key="ingredient_category.id">
+        {{ ingredient_category.id }}
+        {{ ingredient_category.name }}
+    </div>
+</template>
+>>>>>>> 3cfa08d (test)
