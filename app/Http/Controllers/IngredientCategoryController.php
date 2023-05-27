@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\IngredientCategory;
+use App\Models\Recipe;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreIngredientCategoryRequest;
 use App\Http\Requests\UpdateIngredientCategoryRequest;
+use Illuminate\Contracts\Cache\Store;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
@@ -18,14 +20,14 @@ class IngredientCategoryController extends Controller
      */
     public function index()
     {
-        // return Inertia::render('PaidMember/Recipe/Index', [
-        //     'ingredient_categories' =>  IngredientCategory::select('id', 'name')
-        //     ->get()
-        // ]);
-        return Inertia::render('PaidMember/IngredientCategory/Index', [
-            'ingredient_categories' =>  IngredientCategory::select('id', 'name')
-            ->get()
-        ]);
+
+
+        $ingredientCategories = IngredientCategory::with('recipes')->get();
+
+        return Inertia::render('PaidMember/Category/Index', [
+            'ingredient_categories' => $ingredientCategories,
+        ]);   
+
     }
 
     /**
@@ -55,14 +57,16 @@ class IngredientCategoryController extends Controller
      * @param  \App\Models\IngredientCategory  $ingredientCategory
      * @return \Illuminate\Http\Response
      */
-    public function show(IngredientCategory $ingredientCategory)
+    public function show($id)
     {
+        $ingredientCategory = IngredientCategory::with('recipes')->findOrFail($id);
+
         // dd($ingredientCategory);
-        return Inertia::render('PaidMember/IngredientCategory/Show', [
-            'ingredientCategory' =>  $ingredientCategory
+    
+        return Inertia::render('PaidMember/Category/Show', [
+            'ingredientCategory' => $ingredientCategory
         ]);
     }
-
     /**
      * Show the form for editing the specified resource.
      *

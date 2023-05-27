@@ -32,10 +32,10 @@ Route::get('/', function () {
 Route::resource('/detail', PaidMemberDetailController::class)
 ->middleware(['auth:paid_members', 'verified']);
 
-Route::resource('/ingredient_category', IngredientCategoryController::class)
+Route::resource('/category', IngredientCategoryController::class)
 ->middleware(['auth:paid_members', 'verified']);
 
-Route::resource('/ingredient_category/recipe', RecipeController::class)
+Route::resource('/recipe', RecipeController::class)
 ->middleware(['auth:paid_members', 'verified']);
 
 

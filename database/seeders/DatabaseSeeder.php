@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
             RecipeSeeder::class,
         ]);
 
-        // \App\Models\User::factory(10)->create();
+        \App\Models\Recipe::factory(100)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
