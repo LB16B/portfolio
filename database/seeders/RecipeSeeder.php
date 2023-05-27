@@ -18,12 +18,15 @@ class RecipeSeeder extends Seeder
         DB::table('recipes')->insert([
             [
                 'title' => 'サラダ',
+                'ingredient_category_id' => 1,
             ],
             [
                 'title' => 'スープ',
+                'ingredient_category_id' => 2,
             ],
             [
                 'title' => 'ステーキ',
+                'ingredient_category_id' => 3,
             ],
         ]);
     }

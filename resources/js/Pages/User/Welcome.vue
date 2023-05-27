@@ -1,6 +1,5 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
-import IngredientCategory from './IngredientCategory/Index.vue';
 
 defineProps({
     canLogin: Boolean,

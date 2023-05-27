@@ -18,7 +18,7 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        return Inertia::render('PaidMember/IngredientCategory/Recipe/Index', [
+        return Inertia::render('PaidMember/Recipe/Index', [
             'recipes' =>  Recipe::select('id', 'title')->get()            
         ]);
     }

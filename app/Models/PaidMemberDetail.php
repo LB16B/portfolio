@@ -21,9 +21,4 @@ class PaidMemberDetail extends Model
     {
         return $this->belongsTo(PaidMember::class);
     }
-
-    // public function product()
-    // {
-    //     return $this->hasMany(Product::class);
-    // }
 }

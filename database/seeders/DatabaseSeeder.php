@@ -21,10 +21,7 @@ class DatabaseSeeder extends Seeder
             PaidMemberSeeder::class,
             PaidMemberDetailSeeder::class,
             IngredientCategorySeeder::class,
-<<<<<<< HEAD
             RecipeSeeder::class,
-=======
->>>>>>> 3cfa08d (test)
         ]);
 
         // \App\Models\User::factory(10)->create();

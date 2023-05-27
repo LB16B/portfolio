@@ -2,15 +2,12 @@
 
 namespace App\Policies;
 
-<<<<<<< HEAD
+
 use Illuminate\Auth\Access\HandlesAuthorization;
 use App\Models\IngredientCategory;
 use App\Models\User;
-=======
-use App\Models\IngredientCategory;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
->>>>>>> 3cfa08d (test)
 
 class IngredientCategoryPolicy
 {

@@ -24,11 +24,7 @@ class StoreIngredientCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-<<<<<<< HEAD
-            //
-=======
             'nick_name' => ['required', 'max:50'],
->>>>>>> 3cfa08d (test)
         ];
     }
 }

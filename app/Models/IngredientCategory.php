@@ -4,16 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Recipe;
 
 class IngredientCategory extends Model
 {
     use HasFactory;
 
-<<<<<<< HEAD
-    protected $fillable = [
-=======
         protected $fillable = [
->>>>>>> 3cfa08d (test)
         'name',
     ];
+
+    public function recipes()
+    {
+        return $this->hasMany(Recipe::class);
+    }
 }

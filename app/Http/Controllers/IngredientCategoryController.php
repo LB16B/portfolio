@@ -3,13 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\IngredientCategory;
+use App\Models\Recipe;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreIngredientCategoryRequest;
 use App\Http\Requests\UpdateIngredientCategoryRequest;
-<<<<<<< HEAD
-=======
 use Illuminate\Contracts\Cache\Store;
->>>>>>> 3cfa08d (test)
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
@@ -22,19 +20,21 @@ class IngredientCategoryController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
-        // return Inertia::render('PaidMember/Recipe/Index', [
+
+
+        $ingredientCategories = IngredientCategory::with('recipes')->get();
+
+        // dd($ingredientCategories);
+
+        return Inertia::render('PaidMember/IngredientCategory/Index', [
+            'ingredient_categories' => $ingredientCategories,
+            // 'recipies' => $ingredientCategories
+        ]);   
+
+        // return Inertia::render('PaidMember/IngredientCategory/Index', [
         //     'ingredient_categories' =>  IngredientCategory::select('id', 'name')
         //     ->get()
         // ]);
-        return Inertia::render('PaidMember/IngredientCategory/Index', [
-            'ingredient_categories' =>  IngredientCategory::select('id', 'name')
-            ->get()
-=======
-        return Inertia::render('PaidMember/IngredientCategory/Index', [
-            'ingredient_categories' => IngredientCategory::select('id', 'name')->get()
->>>>>>> 3cfa08d (test)
-        ]);
     }
 
     /**
@@ -66,14 +66,9 @@ class IngredientCategoryController extends Controller
      */
     public function show(IngredientCategory $ingredientCategory)
     {
-<<<<<<< HEAD
-        // dd($ingredientCategory);
         return Inertia::render('PaidMember/IngredientCategory/Show', [
             'ingredientCategory' =>  $ingredientCategory
         ]);
-=======
-        //
->>>>>>> 3cfa08d (test)
     }
 
     /**
