@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\IngredientCategory;
 use App\Models\Recipe;
 use App\Http\Controllers\Controller;
+// use App\Http\Controllers\IngredientCategoryController;
 use App\Http\Requests\StoreIngredientCategoryRequest;
 use App\Http\Requests\UpdateIngredientCategoryRequest;
 use Illuminate\Contracts\Cache\Store;
@@ -60,13 +61,26 @@ class IngredientCategoryController extends Controller
     public function show($id)
     {
         $ingredientCategory = IngredientCategory::with('recipes')->findOrFail($id);
+    
+        $recipes = $ingredientCategory->recipes()->paginate(5);
 
-        // dd($ingredientCategory);
     
         return Inertia::render('PaidMember/Category/Show', [
-            'ingredientCategory' => $ingredientCategory
+            'ingredientCategory' => $ingredientCategory,
+            'recipes' => $recipes,
         ]);
     }
+    
+    // public function show($id)
+    // {
+    //     $ingredientCategory = IngredientCategory::with('recipes')->findOrFail($id);
+
+    //     // dd($ingredientCategory);
+    
+    //     return Inertia::render('PaidMember/Category/Show', [
+    //         'ingredientCategory' => $ingredientCategory,
+    //     ]);
+    // }
     /**
      * Show the form for editing the specified resource.
      *
