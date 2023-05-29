@@ -30,7 +30,7 @@ class RecipeController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('PaidMember/Recipe/Create');
     }
 
     /**
@@ -41,7 +41,16 @@ class RecipeController extends Controller
      */
     public function store(StoreRecipeRequest $request)
     {
-        //
+        Recipe::create([
+            'title' => $request->title,
+            'ingredient_category_id' => $request->ingredient_category_id,
+            'cal' => $request->cal,
+            'time' => $request->time,
+            'price' => $request->price,
+            'filename' => $request->filename,
+        ]);
+
+        return to_route('paid_member.dashboard');
     }
 
     /**

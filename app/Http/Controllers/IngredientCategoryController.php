@@ -62,7 +62,7 @@ class IngredientCategoryController extends Controller
     {
         $ingredientCategory = IngredientCategory::with('recipes')->findOrFail($id);
     
-        $recipes = $ingredientCategory->recipes()->paginate(5);
+        $recipes = $ingredientCategory->recipes()->paginate(8);
 
     
         return Inertia::render('PaidMember/Category/Show', [
