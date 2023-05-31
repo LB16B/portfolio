@@ -21,7 +21,6 @@ class DatabaseSeeder extends Seeder
             PaidMemberSeeder::class,
             PaidMemberDetailSeeder::class,
             IngredientCategorySeeder::class,
-            RecipeSeeder::class,
         ]);
 
         \App\Models\Recipe::factory(300)->create();

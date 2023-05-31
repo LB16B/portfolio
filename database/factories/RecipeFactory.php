@@ -53,7 +53,38 @@ class JapaneseFakerProvider extends Base
     {
         return static::randomElement(static::$foodNames);
     }
+
+    
 }
+
+class ImageFakerProvider extends Base {
+
+    protected static $recipeImages = [
+        '2023-05-31EOuIKmkx8WGPS1F.jpg',
+        '2023-05-31El5YInDnnM4wbDn.jpg',
+        '2023-05-31GEferH5RxwXa7GP.jpg',
+        '2023-05-31mVEzjIjgCb8AK6u.jpg',
+        '2023-05-31O3a9TFX9Iv6mFxH.jpg',
+        '2023-05-31PUjhSqWqJjlYIlQ.jpg',
+        '2023-05-31rkchqq9hPJUDRJy.jpg',
+        '2023-05-31SX2dbKw0oqW1c1b.jpg',
+        '2023-05-31WCBbPq9uavj6oGa.jpg',
+        '2023-05-31yTzOM5wgl0xmIDd.jpg',
+        '2023-05-31z5htyKAoOlLgx9r.jpg',
+        '2023-05-311FELS3SZNwbBXot.jpg',
+        '2023-05-314esJMmx7a3AdMNf.jpg',
+        '2023-05-31cNj3iaOi7Gq8xUZ.jpg',
+        '2023-05-31BAmFtz7cRMBzVSj.jpg',
+        '2023-05-31aQDkFqSc3LV7c8b.jpg'
+    ];
+    
+    public static function recipeImage()
+    {
+        return static::randomElement(static::$recipeImages);
+    }
+
+}
+
 
 class RecipeFactory extends Factory
 {
@@ -62,6 +93,7 @@ class RecipeFactory extends Factory
     public function definition()
     {
         $this->faker->addProvider(new JapaneseFakerProvider($this->faker));
+        $this->faker->addProvider(new ImageFakerProvider($this->faker));
 
         return [
             'title' => JapaneseFakerProvider::foodName(),
@@ -69,6 +101,7 @@ class RecipeFactory extends Factory
             'cal' => $this->faker->numberBetween(100, 1000),
             'time' => $this->faker->numberBetween(10, 60),
             'price' => $this->faker->randomFloat(2, 5, 50),
+            'filename' => ImageFakerProvider::recipeImage(),
         ];
     }
 }
