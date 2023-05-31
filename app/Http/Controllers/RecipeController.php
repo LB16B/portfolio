@@ -8,6 +8,10 @@ use App\Http\Requests\StoreRecipeRequest;
 use App\Http\Requests\UpdateRecipeRequest;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+use Illuminate\Contracts\Cache\Store;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Image;
 
 class RecipeController extends Controller
 {
@@ -41,13 +45,25 @@ class RecipeController extends Controller
      */
     public function store(StoreRecipeRequest $request)
     {
+        $fname = $request->file('file')->getClientOriginalExtension();
+        $disk = Storage::build([
+                'driver' => 'local',
+                'root' => public_path('recipe_images'),
+            ]);
+
+        $random_name = Str::random(15);
+        $new_fname = date('Y-m-d') . $random_name . '.' . $fname;
+        $disk->putFileAs('', $request->file('file'), $new_fname);
+
+
         Recipe::create([
             'title' => $request->title,
             'ingredient_category_id' => $request->ingredient_category_id,
             'cal' => $request->cal,
             'time' => $request->time,
             'price' => $request->price,
-            'filename' => $request->filename,
+            'filename' => $new_fname,
+            // 'filename' => $request->filename,
         ]);
 
         return to_route('paid_member.dashboard');
