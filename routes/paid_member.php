@@ -3,6 +3,7 @@
 use App\Http\Controllers\PaidMemberProfileController;
 use App\Http\Controllers\PaidMemberDetailController;
 use App\Http\Controllers\IngredientCategoryController;
+use App\Http\Controllers\AgeMonthCategoryController;
 use App\Http\Controllers\RecipeController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +34,9 @@ Route::resource('/detail', PaidMemberDetailController::class)
 ->middleware(['auth:paid_members', 'verified']);
 
 Route::resource('/category', IngredientCategoryController::class)
+->middleware(['auth:paid_members', 'verified']);
+
+Route::resource('/age_month_category', AgeMOnthCategoryController::class)
 ->middleware(['auth:paid_members', 'verified']);
 
 Route::resource('/recipe', RecipeController::class)

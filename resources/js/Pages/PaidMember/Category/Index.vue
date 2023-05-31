@@ -7,6 +7,7 @@ import { Inertia } from '@inertiajs/inertia'
 
 defineProps({
     ingredient_categories: Array,
+    age_month_categories: Array,
 })
 </script>
 
@@ -48,6 +49,31 @@ defineProps({
             <section class="text-gray-600 body-font">
                 <div class="container px-5 py-24 mx-auto">
                     <div class="flex flex-col text-center w-full mb-20">
+                        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">月齢からレシピを探す</h1>
+                    </div>
+                    <div class="flex flex-wrap -m-2">
+                        <div 
+                            v-for="age_month_category in age_month_categories" 
+                            :key="age_month_category.id" 
+                            class="p-2">
+                                <div
+                                    class="h-full flex items-center border-gray-200 border p-4 rounded-lg ">
+                                        <Link
+                                        :href="route('paid_member.age_month_category.show', { age_month_category: age_month_category.id })"
+                                        class="flex-grow">
+                                            <h2 class="text-gray-900 title-font font-medium">{{ age_month_category.name }}</h2>
+                                        </Link>
+                                </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <section class="text-gray-600 body-font">
+                <div class="container px-5 py-24 mx-auto">
+                    <div class="flex flex-col text-center w-full mb-20">
                         <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">レシピ一覧</h1>
                     </div>
                     <div class="flex flex-wrap -m-2">
@@ -58,7 +84,15 @@ defineProps({
                             
                             <ul>
                                 <li v-for="recipe in ingredient_category.recipes" :key="recipe.id">
-                                    <h2 class="text-gray-900 title-font font-medium">{{ recipe.title }}</h2>
+                                    <!-- <h2 class="text-gray-900 title-font font-medium">{{ recipe.title }}</h2> -->
+                                    <a class="block relative h-48 rounded overflow-hidden">
+                                        <img :src="'/recipe_images/' + recipe.filename" class="rounded-md w-full h-full">
+                                    </a>
+                                    <div class="mt-4">
+                                        <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                                        <h2 class="text-gray-900 title-font text-lg font-medium">{{ recipe.title }}</h2>
+                                        <p class="mt-1">{{ recipe.cal }}cal / {{ recipe.time }}分 / {{ recipe.price }} 円</p>
+                                    </div>
                                 </li>
                             </ul>
 

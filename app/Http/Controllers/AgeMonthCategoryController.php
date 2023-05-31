@@ -3,9 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\ageMonthCategory;
+use App\Models\IngredientCategory;
+use App\Models\Recipe;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreageMonthCategoryRequest;
-use App\Http\Requests\UpdateageMonthCategoryRequest;
+use App\Http\Requests\StoreMonthCategoryRequest;
+use App\Http\Requests\UpdateMonthCategoryRequest;
+use Illuminate\Contracts\Cache\Store;
+use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
+
+
 
 class AgeMonthCategoryController extends Controller
 {
@@ -16,7 +23,11 @@ class AgeMonthCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $ageMonthCategories = AgeMonthCategory::with('recipes')->get();
+
+        return Inertia::render('PaidMember/AgeMonthCategory/Index', [
+            'age_month_categories' => $ageMonthCategories,
+        ]);   
     }
 
     /**
@@ -46,10 +57,17 @@ class AgeMonthCategoryController extends Controller
      * @param  \App\Models\ageMonthCategory  $ageMonthCategory
      * @return \Illuminate\Http\Response
      */
-    public function show(ageMonthCategory $ageMonthCategory)
+    public function show($id)
     {
-        //
+        $ageMonthCategory = AgeMonthCategory::with('recipes')->findOrFail($id);
+        $recipes = $ageMonthCategory->recipes()->paginate(8);
+    
+        return Inertia::render('PaidMember/AgeMonthCategory/Show', [
+            'ageMonthCategory' => $ageMonthCategory,
+            'recipes' => $recipes,
+        ]);
     }
+    
 
     /**
      * Show the form for editing the specified resource.

@@ -15,7 +15,7 @@ class ageMonthCategory extends Model
         'name',
     ];
 
-    public function age_recipes()
+    public function recipes()
     {
         return $this->hasMany(Recipe::class);
     }

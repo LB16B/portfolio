@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\IngredientCategory;
+use App\Models\ageMonthCategory;
 use App\Models\Recipe;
 use App\Http\Controllers\Controller;
 // use App\Http\Controllers\IngredientCategoryController;
@@ -21,12 +22,14 @@ class IngredientCategoryController extends Controller
      */
     public function index()
     {
-
-
         $ingredientCategories = IngredientCategory::with('recipes')->get();
+        $ageMonthCategories = AgeMonthCategory::select('id', 'name')->get();
+
+        // dd($ageMonthCategories);
 
         return Inertia::render('PaidMember/Category/Index', [
             'ingredient_categories' => $ingredientCategories,
+            'age_month_categories' => $ageMonthCategories,
         ]);   
 
     }
@@ -61,13 +64,16 @@ class IngredientCategoryController extends Controller
     public function show($id)
     {
         $ingredientCategory = IngredientCategory::with('recipes')->findOrFail($id);
-    
         $recipes = $ingredientCategory->recipes()->paginate(8);
+
+        // $ageMonthCategory = AgeMonthCategory::with('recipes');
+        // $age_recipes = $ageMonthCategory->recipes()->paginate(8);
 
     
         return Inertia::render('PaidMember/Category/Show', [
             'ingredientCategory' => $ingredientCategory,
             'recipes' => $recipes,
+            // 'ageMonthCategory' => $ageMonthCategory,
         ]);
     }
     

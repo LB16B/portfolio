@@ -17,41 +17,21 @@ class AgeMonthCategorySeeder extends Seeder
     {
         DB::table('age_month_categories')->insert([
             [
-            'name' => '1',
+            'name' => '0 ~ 4ヶ月頃',
             ],
             [
-            'name' => '2',
+            'name' => '5 ~ 6ヶ月頃',
             ],
             [
-            'name' => '3',
+            'name' => '7 ~ 8ヶ月頃',
             ],
             [
-            'name' => '4',
+            'name' => '9 ~ 11ヶ月頃',
             ],
             [
-            'name' => '5',
+            'name' => '1 ~ 2歳頃',
             ],
-            [
-            'name' => '6',
-            ],
-            [
-            'name' => '7',
-            ],
-            [
-            'name' => '8',
-            ],
-            [
-            'name' => '9',
-            ],
-            [
-            'name' => '10',
-            ],
-            [
-            'name' => '11',
-            ],
-            [
-            'name' => '12',
-            ],
+
         ]);
     }
 }
