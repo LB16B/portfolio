@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('ingredient_category_id')->constrained();
             $table->foreignId('age_month_category_id')->constrained();
-            // $table->integer('age_month_category_id');
             $table->string('title');
             $table->integer('cal');
             $table->integer('time');

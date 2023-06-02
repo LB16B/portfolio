@@ -23,32 +23,56 @@ defineProps({
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-6 bg-white border-b border-gray-200">    
                     
-                    <section class="text-gray-600 body-font">
-                        <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-                            <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
-                            <div v-for="paid_member_detail in paid_member_details" :key="paid_member_detail.id">
-                                <div v-if="paid_member_detail.paid_member_id === $page.props.auth.user.id">
-                                    <img :src="'/paid_member_profile_images/' + paid_member_detail.filename">
+                        <section class="text-gray-600 body-font relative flex justify-center">
+                            <div class="container px-5 py-8 mx-auto ">
 
+                            <div class="lg:w-1/2 md:w-2/3 mx-auto">
+                                <div class="flex flex-wrap -m-2">
+                                    <div v-for="paid_member_detail in paid_member_details" :key="paid_member_detail.id">
+                                        <div v-if="paid_member_detail.paid_member_id === $page.props.auth.user.id">
 
-                                    <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
-                                        ID : <Link  class="text-blue-400" :href="route('paid_member.detail.edit', { detail: paid_member_detail.id })">
-                                            {{ paid_member_detail.id }}
-                                        </Link>
-                                    </h1>                            
-                                    <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900"> paid_member_id : {{ paid_member_detail.paid_member_id }}</h1>                            
-                                    <p class="mb-8 leading-relaxed">nick_name : {{ paid_member_detail.nick_name }}</p>
-                                    <p class="mb-8 leading-relaxed">greeting : {{ paid_member_detail.greeting }}</p>
-                                    <div class="flex justify-center">
-                                        <Link as="button" :href="route('paid_member.detail.edit', { detail: paid_member_detail.id })" class="inline-flex text-white bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded text-lg">編集</Link>
+                                        <div class="lg:max-w-lg lg:w-full mb-10 md:mb-0 p-2 ">
+                                            <div v-if="paid_member_detail.filename === ''" class="relative">
+                                                <img src="/images/no_image.png" class="rounded-md">
+                                            </div>
+                                            <div v-else class="relative">
+                                                <img :src="'/paid_member_profile_images/' + paid_member_detail.filename" class="rounded-md">
+                                            </div>
+                                        </div>
+
+                                            <div class="p-2 w-full">
+                                                <div class="relative">
+                                                    <label class="leading-7 text-sm text-gray-600">ニックネーム</label>
+                                                    <p class="w-full  bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                                        {{ paid_member_detail.nick_name }}
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                                <div class="p-2 w-full">
+                                                    <div class="relative">
+                                                        <label for="greeting" class="leading-7 text-sm text-gray-600">挨拶</label>
+                                                        <div class="w-full  bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out">
+                                                            {{ paid_member_detail.greeting }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            
+                                            
+                                            <div class="flex justify-center">
+                                                <Link as="button" :href="route('paid_member.detail.edit', { detail: paid_member_detail.id })" class="inline-flex text-white bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded text-lg">編集</Link>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             </div>
-                        </div>
-                    </section>
+                        </section>
 
+                    </div>
                 </div>
             </div>
         </div>

@@ -7,6 +7,7 @@ import { Inertia } from '@inertiajs/inertia'
 const form = reactive ({
         title: null,
         ingredient_category_id: null,
+        age_month_category_id: null,
         cal: null,
         time: null,
         price: null,
@@ -17,6 +18,7 @@ const form = reactive ({
 const storeRecipe = () => {
     Inertia.post('/paid_member/recipe', form)
 }
+
 </script>
 
 <template>
@@ -31,24 +33,34 @@ const storeRecipe = () => {
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
-                <section class="text-gray-600 body-font relative">
+                <section id="vue" class="text-gray-600 body-font relative">
                     <form @submit.prevent="storeRecipe" enctype="multipart/form-data">
                         <div class="container px-5 py-8 mx-auto">
                             <div class="lg:w-1/2 md:w-2/3 mx-auto">
                                 <div class="flex flex-wrap -m-2">
 
-                                    <div class="lg:max-w-lg lg:w-full md:w-1/2 mb-10 md:mb-0 p-2 ">
-                                        <div class="relative">
-                                            <!-- <img :src="'/paid_member_profile_images/' + props.paid_member_detail.filename" class="rounded-md"> -->
-                                            <input type="text" v-model="form.filename">
+                                    <!-- <div>
+                                        <div>
+                                            <input type="file" name="avatar" ref="preview" v-on:change="show">
                                         </div>
-                                    </div>
+                                        <div class="preview-box" v-if="url">
+                                            <img class="image-preview" v-bind:src="url">
+                                        </div>
+                                    </div> -->
 
 
                                     <div class="p-2 w-full">
                                         <div class="relative">
-                                        <label for="filename" class="leading-7 text-sm text-gray-600">画像</label>
-                                        <input @change="fileSelected" id="file" name="file"  type="file" @input="form.file = $event.target.files[0]" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                            <di v-if="url === ''">
+                                                <img src="/images/no_image.png">
+                                            </di>
+                                            <div v-else>
+                                                <img class="image-preview" v-bind:src="url">
+                                            </div>
+                                            
+                                            <label for="filename" class="leading-7 text-sm text-gray-600">画像</label>
+                                            <input ref="preview" v-on:change="show" @change="fileSelected" id="file" name="file"  type="file" @input="form.file = $event.target.files[0]"
+                                                class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                         </div>
                                     </div>
 
@@ -62,8 +74,16 @@ const storeRecipe = () => {
 
                                     <div class="p-2 w-full">
                                         <div class="relative">
-                                            <label for="ingredient_category_id" class="leading-7 text-sm text-gray-600">カテゴリーID</label>
+                                            <label for="ingredient_category_id" class="leading-7 text-sm text-gray-600">食材カテゴリーID</label>
                                             <input type="number" id="ingredient_category_id" name="ingredient_category_id" v-model="form.ingredient_category_id" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                        </div>
+                                    </div>
+                                
+
+                                    <div class="p-2 w-full">
+                                        <div class="relative">
+                                            <label for="age_month_category_id" class="leading-7 text-sm text-gray-600">月齢カテゴリーID</label>
+                                            <input type="number" id="age_month_category_id" name="age_month_category_id" v-model="form.age_month_category_id" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                         </div>
                                     </div>
 
@@ -88,13 +108,6 @@ const storeRecipe = () => {
                                         </div>
                                     </div>
                                     
-                                    <!-- <div class="p-2 w-full">
-                                        <div class="relative">
-                                            <label for="filename" class="leading-7 text-sm text-gray-600">画像</label>
-                                            <input type="number" id="filename" name="filename" v-model="form.filename" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                                        </div>
-                                    </div> -->
-                                    
                                     <div class="p-2 w-full">
                                         <button class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">投稿する</button>
                                     </div>
@@ -110,3 +123,21 @@ const storeRecipe = () => {
 
     </PaidMemberAuthenticatedLayout>
 </template>
+
+<script>
+export default {
+    name: "ProfileImagePreviewComponent",
+
+    data() {
+        return {
+            url:""
+        }
+    },
+    methods: {
+        show() {
+            const file = this.$refs.preview.files[0];
+            this.url = URL.createObjectURL(file);
+        }
+    }
+}
+</script>

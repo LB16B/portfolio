@@ -43,6 +43,7 @@ const updatePaidMemberDetail = id => {
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200">
+
                         <section class="text-gray-600 body-font relative flex justify-center">
                             <form @submit.prevent="updatePaidMemberDetail(form.id)"  enctype="multipart/form-data">
                                 <div class="container px-5 py-8 mx-auto ">
@@ -50,7 +51,7 @@ const updatePaidMemberDetail = id => {
 
                                     <div class="lg:w-1/2 md:w-2/3 mx-auto">
                                         <div class="flex flex-wrap -m-2">
-                                            <div class="lg:max-w-lg lg:w-full md:w-1/2 mb-10 md:mb-0 p-2 ">
+                                            <div class="lg:max-w-lg lg:w-full mb-10 md:mb-0 p-2 ">
                                                 <div class="relative">
                                                     <img :src="'/paid_member_profile_images/' + props.paid_member_detail.filename" class="rounded-md">
                                                     <input type="hidden" v-model="form.filename">

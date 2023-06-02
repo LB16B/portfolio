@@ -59,6 +59,7 @@ class RecipeController extends Controller
         Recipe::create([
             'title' => $request->title,
             'ingredient_category_id' => $request->ingredient_category_id,
+            'age_month_category_id' => $request->age_month_category_id,
             'cal' => $request->cal,
             'time' => $request->time,
             'price' => $request->price,
