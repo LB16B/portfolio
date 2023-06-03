@@ -41,9 +41,9 @@ defineProps({
                                             <img :src="'/recipe_images/' + recipe.filename" class="rounded-md w-full h-full">
                                         </a>
                                         <div class="mt-4">
-                                            <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{ ingredientCategory.name }}</h3>
+                                            <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{ recipe.ingredient_category.name }}</h3>
                                             <!-- ここにageMonthCategoryを表示したい -->
-                                            <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1"></h3>
+                                            <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{ recipe.age_month_category.name }}</h3>
                                             <!--  -->
                                             <h2 class="text-gray-900 title-font text-lg font-medium">{{ recipe.title }}</h2>
                                             <p class="mt-1">{{ recipe.cal }}cal / {{ recipe.time }}分 / {{ recipe.price }} 円</p>
@@ -56,7 +56,7 @@ defineProps({
                         </section>
 
                     <Pagination class="mt-6" :links="recipes.links"></Pagination>
-                    
+
                 </div>
             </div>
         </div>
