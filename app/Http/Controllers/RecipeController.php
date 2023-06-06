@@ -13,7 +13,9 @@ use Inertia\Inertia;
 use Illuminate\Contracts\Cache\Store;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Image;
+// use \InterventionImage;
+use Illuminate\Http\File;
+use Intervention\Image\Facades\Image as InterventionImage;
 
 class RecipeController extends Controller
 {
@@ -47,15 +49,21 @@ class RecipeController extends Controller
      */
     public function store(StoreRecipeRequest $request)
     {
-        $fname = $request->file('file')->getClientOriginalExtension();
-        $disk = Storage::build([
-                'driver' => 'local',
-                'root' => public_path('recipe_images'),
-            ]);
-
+    
+        $file = $request->file('file');
+        $extension = $file->getClientOriginalExtension();
+        
         $random_name = Str::random(15);
-        $new_fname = date('Y-m-d') . $random_name . '.' . $fname;
-        $disk->putFileAs('', $request->file('file'), $new_fname);
+        $new_fname = date('Y-m-d') . $random_name . '.' . $extension;
+        
+        $imagePath = public_path('recipe_images') . '/' . $new_fname;
+        
+        // 画像のリサイズ
+        $image = imagecreatefromstring(file_get_contents($file->getRealPath()));
+        $resizedImage = imagescale($image, 30, 30);
+        
+        // リサイズ後の画像を保存
+        imagepng($resizedImage, $imagePath);
 
 
         Recipe::create([
@@ -66,7 +74,6 @@ class RecipeController extends Controller
             'time' => $request->time,
             'price' => $request->price,
             'filename' => $new_fname,
-            // 'filename' => $request->filename,
         ]);
 
         return to_route('paid_member.dashboard');
