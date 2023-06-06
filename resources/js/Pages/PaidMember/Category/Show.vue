@@ -1,8 +1,9 @@
 <script setup>
 import PaidMemberAuthenticatedLayout from '@/Layouts/PaidMemberAuthenticatedLayout.vue';
 import { ref, onMounted } from 'vue';
-import { Head} from '@inertiajs/vue3';
-import Pagination from '@/Components/Pagination.vue'
+import { Head, Link } from '@inertiajs/vue3';
+import Pagination from '@/Components/Pagination.vue';
+import { Inertia } from '@inertiajs/inertia'
 
 defineProps({
     ingredientCategory: Object,
@@ -37,17 +38,16 @@ defineProps({
 
                                     <div v-for="recipe in recipes.data" :key="recipe.id"
                                         class="lg:w-1/4 md:w-1/2 p-4 w-full">
-                                        <a class="block relative h-48 rounded overflow-hidden">
-                                            <img :src="'/recipe_images/' + recipe.filename" class="rounded-md w-full h-full">
-                                        </a>
-                                        <div class="mt-4">
-                                            <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{ ingredientCategory.name }} / {{ recipe.age_month_category.name }}</h3>
-                                            <!-- ここにageMonthCategoryを表示したい -->
-                                            <!-- <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{ recipe.age_month_category.name }}</h3> -->
-                                            <!--  -->
-                                            <h2 class="text-gray-900 title-font text-lg font-medium">{{ recipe.title }}</h2>
-                                            <p class="mt-1">{{ recipe.cal }}cal / {{ recipe.time }}分 / {{ recipe.price }} 円</p>
-                                        </div>
+                                        <Link :href="route('paid_member.recipe.show', { recipe: recipe.id })">
+                                            <a class="block relative h-48 rounded overflow-hidden">
+                                                <img :src="'/recipe_images/' + recipe.filename" class="rounded-md w-full h-full">
+                                            </a>
+                                            <div class="mt-4">
+                                                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{ ingredientCategory.name }} / {{ recipe.age_month_category.name }}</h3>
+                                                <h2 class="text-gray-900 title-font text-lg font-medium">{{ recipe.title }}</h2>
+                                                <p class="mt-1">{{ recipe.cal }}cal / {{ recipe.time }}分 / {{ recipe.price }} 円</p>
+                                            </div>                                        
+                                        </Link>
                                     </div>
 
 

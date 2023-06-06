@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Recipe;
 use App\Http\Controllers\Controller;
+use App\Models\AgeMonthCategory;
 use App\Http\Requests\StoreRecipeRequest;
 use App\Http\Requests\UpdateRecipeRequest;
+use App\Policies\AgeMonthCategoryPolicy;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Illuminate\Contracts\Cache\Store;
@@ -76,9 +78,14 @@ class RecipeController extends Controller
      * @param  \App\Models\Recipe  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function show(Recipe $recipe)
+    public function show($id)
     {
-        //
+        $recipe = Recipe::with('ageMonthCategory')->findOrFail($id);
+
+        // dd($recipe);
+        return Inertia::render('PaidMember/Recipe/Show', [
+            'recipe' => $recipe,
+        ]);
     }
 
     /**

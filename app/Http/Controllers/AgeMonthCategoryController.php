@@ -59,8 +59,8 @@ class AgeMonthCategoryController extends Controller
      */
     public function show($id)
     {
-        $ageMonthCategory = AgeMonthCategory::with('recipes')->findOrFail($id);
-        $recipes = $ageMonthCategory->recipes()->paginate(8);
+        $ageMonthCategory = AgeMonthCategory::findOrFail($id);
+        $recipes = Recipe::with(['ingredientCategory', 'ageMonthCategory'])->where("age_month_category_id", $id)->paginate(12);
     
         return Inertia::render('PaidMember/AgeMonthCategory/Show', [
             'ageMonthCategory' => $ageMonthCategory,

@@ -75,7 +75,17 @@ class ImageFakerProvider extends Base {
         '2023-05-314esJMmx7a3AdMNf.jpg',
         '2023-05-31cNj3iaOi7Gq8xUZ.jpg',
         '2023-05-31BAmFtz7cRMBzVSj.jpg',
-        '2023-05-31aQDkFqSc3LV7c8b.jpg'
+        '2023-05-31aQDkFqSc3LV7c8b.jpg',
+        '2023-06-058W43SYt5erj9NJr.jpg',
+        '2023-06-058Sk1bx7Lw4h15yy.jpg',
+        '2023-06-058ffSJ1wLt6dlofR.jpg',
+        '2023-06-05zneD2rfDwq4nEYs.jpg',
+        '2023-06-05uLZny1lMQ8h7RO1.jpg',
+        '2023-06-05UaHcCejSDypPvjN.jpg',
+        '2023-06-05FAr7GgVfh0oN0Ob.jpg',
+        '2023-06-05lFVVtZ1dMug8cLi.jpg',
+        '2023-06-05pQBHhBjj574LdJ7.jpg',
+        '2023-06-05QD1FgVmMi9K1L8i.jpg',
     ];
     
     public static function recipeImage()

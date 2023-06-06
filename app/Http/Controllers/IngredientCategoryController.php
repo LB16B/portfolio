@@ -24,8 +24,6 @@ class IngredientCategoryController extends Controller
         $ingredientCategories = IngredientCategory::with('recipes')->get();
         $ageMonthCategories = AgeMonthCategory::select('id', 'name')->get();
 
-        // dd($ageMonthCategories);
-
         return Inertia::render('PaidMember/Category/Index', [
             'ingredient_categories' => $ingredientCategories,
             'age_month_categories' => $ageMonthCategories,
@@ -63,10 +61,7 @@ class IngredientCategoryController extends Controller
     public function show($id)
     {
         $ingredientCategory = IngredientCategory::findOrFail($id);
-        $recipes = Recipe::with(['ageMonthCategory', 'ingredientCategory'])->where("ingredient_category_id", $id)->paginate(8);
-
-        // $ingredientCategory = IngredientCategory::with(['recipes.ageMonthCategory'])->findOrFail($id);
-        // $recipes = $ingredientCategory->recipes()->paginate(8);
+        $recipes = Recipe::with(['ageMonthCategory', 'ingredientCategory'])->where("ingredient_category_id", $id)->paginate(12);
 
         return Inertia::render('PaidMember/Category/Show', [
             'ingredientCategory' => $ingredientCategory,
