@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\IngredientCategory;
 use App\Models\AgeMonthCategory;
+use App\Models\Manual;
 
 class Recipe extends Model
 {
@@ -29,5 +30,10 @@ class Recipe extends Model
     public function ageMonthCategory()
     {
         return $this->belongsTo(AgeMonthCategory::class, 'age_month_category_id');
+    }
+
+    public function manual()
+    {
+        return $this->hasOne(Manual::class);
     }
 }

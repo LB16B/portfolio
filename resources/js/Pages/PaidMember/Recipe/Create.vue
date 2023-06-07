@@ -74,18 +74,68 @@ const storeRecipe = () => {
 
                                     <div class="p-2 w-full">
                                         <div class="relative">
-                                            <label for="ingredient_category_id" class="leading-7 text-sm text-gray-600">食材カテゴリーID</label>
-                                            <input type="number" id="ingredient_category_id" name="ingredient_category_id" v-model="form.ingredient_category_id" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                            <label for="ingredient_category_id" class="leading-7 text-sm text-gray-600">食材カテゴリー</label>
+                                                <div>
+                                                    <input type="radio" id="ingredient_category_id" name="ingredient_category_id" v-model="form.ingredient_category_id" value="1" >
+                                                    <label for="ml-2 mr-4">主食 - ごはん</label>
+                                                    <input type="radio" id="ingredient_category_id" name="ingredient_category_id" v-model="form.ingredient_category_id" value="2" >
+                                                    <label for="ml-2 mr-4">主食 - パン</label>
+                                                    <input type="radio" id="ingredient_category_id" name="ingredient_category_id" v-model="form.ingredient_category_id" value="3" >
+                                                    <label for="ml-2 mr-4">主食 - 麺</label>
+                                                    <input type="radio" id="ingredient_category_id" name="ingredient_category_id" v-model="form.ingredient_category_id" value="4" >
+                                                    <label for="ml-2 mr-4">おかず -野菜</label>
+                                                    <input type="radio" id="ingredient_category_id" name="ingredient_category_id" v-model="form.ingredient_category_id" value="5" >
+                                                    <label for="ml-2 mr-4">おかず - 芋</label>
+                                                    <input type="radio" id="ingredient_category_id" name="ingredient_category_id" v-model="form.ingredient_category_id" value="6" >
+                                                    <label for="ml-2 mr-4">おかず - 豆腐</label>
+                                                    <input type="radio" id="ingredient_category_id" name="ingredient_category_id" v-model="form.ingredient_category_id" value="7" >
+                                                    <label for="ml-2 mr-4">おかず - 豆</label>
+                                                    <input type="radio" id="ingredient_category_id" name="ingredient_category_id" v-model="form.ingredient_category_id" value="8" >
+                                                    <label for="ml-2 mr-4">おかず - 乳製品</label>
+                                                    <input type="radio" id="ingredient_category_id" name="ingredient_category_id" v-model="form.ingredient_category_id" value="9" >
+                                                    <label for="ml-2 mr-4">おかず - 卵</label>
+                                                    <input type="radio" id="ingredient_category_id" name="ingredient_category_id" v-model="form.ingredient_category_id" value="10" >
+                                                    <label for="ml-2 mr-4">おかず - 魚</label>
+                                                    <input type="radio" id="ingredient_category_id" name="ingredient_category_id" v-model="form.ingredient_category_id" value="11" >
+                                                    <label for="ml-2 mr-4">おかず - 肉</label>
+                                                    <input type="radio" id="ingredient_category_id" name="ingredient_category_id" v-model="form.ingredient_category_id" value="12" >
+                                                    <label for="ml-2 mr-4">その他 - 果物</label>
+                                                    <input type="radio" id="ingredient_category_id" name="ingredient_category_id" v-model="form.ingredient_category_id" value="13" >
+                                                    <label for="ml-2 mr-4">その他 - スープ</label>
+                                                    <input type="radio" id="ingredient_category_id" name="ingredient_category_id" v-model="form.ingredient_category_id" value="14" >
+                                                    <label for="ml-2 mr-4">その他 - デザート</label>
+                                                    <input type="radio" id="ingredient_category_id" name="ingredient_category_id" v-model="form.ingredient_category_id" value="15" >
+                                                    <label for="ml-2 mr-4">その他 - おやつ</label>
+                                                </div>
                                         </div>
                                     </div>
+
                                 
 
+                                    <div class="p-2 w-full">
+                                        <div class="relative">
+                                            <label for="age_month_category_id" class="leading-7 text-sm text-gray-600">月齢カテゴリー</label>
+                                            <div>
+                                                <input type="radio" id="age_month_category_id" name="age_month_category_id" v-model="form.age_month_category_id" value="1">
+                                                <label for="ml-2 mr-4">0 ~ 4ヶ月頃</label>
+                                                <input type="radio" id="age_month_category_id" name="age_month_category_id" v-model="form.age_month_category_id" value="2">
+                                                <label for="ml-2 mr-4">5 ~ 6ヶ月頃</label>
+                                                <input type="radio" id="age_month_category_id" name="age_month_category_id" v-model="form.age_month_category_id" value="3">
+                                                <label for="ml-2 mr-4">7 ~ 8ヶ月頃</label>
+                                                <input type="radio" id="age_month_category_id" name="age_month_category_id" v-model="form.age_month_category_id" value="4">
+                                                <label for="ml-2 mr-4">9 ~ 11ヶ月頃</label>
+                                                <input type="radio" id="age_month_category_id" name="age_month_category_id" v-model="form.age_month_category_id" value="5">
+                                                <label for="ml-2 mr-4">1 ~ 2歳頃</label>
+                                            </div>
+                                        </div>
+                                    </div>
+<!-- 
                                     <div class="p-2 w-full">
                                         <div class="relative">
                                             <label for="age_month_category_id" class="leading-7 text-sm text-gray-600">月齢カテゴリーID</label>
                                             <input type="number" id="age_month_category_id" name="age_month_category_id" v-model="form.age_month_category_id" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <div class="p-2 w-full">
                                         <div class="relative">

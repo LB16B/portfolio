@@ -57,13 +57,33 @@ class RecipeController extends Controller
         $new_fname = date('Y-m-d') . $random_name . '.' . $extension;
         
         $imagePath = public_path('recipe_images') . '/' . $new_fname;
-        
-        // 画像のリサイズ
+
         $image = imagecreatefromstring(file_get_contents($file->getRealPath()));
-        $resizedImage = imagescale($image, 30, 30);
-        
+        $originalWidth = imagesx($image);
+        $originalHeight = imagesy($image);
+        $aspectRatio = $originalWidth / $originalHeight;
+
+        // リサイズする幅と高さを計算
+        $resizedWidth = 500;
+        $resizedHeight = 500;
+
+        if ($aspectRatio > 1) {
+            $resizedHeight = $resizedWidth / $aspectRatio;
+        } else {
+            $resizedWidth = $resizedHeight * $aspectRatio;
+        }
+
+        $resizedImage = imagescale($image, $resizedWidth, $resizedHeight);
+
         // リサイズ後の画像を保存
         imagepng($resizedImage, $imagePath);
+        
+        // // 画像のリサイズ
+        // $image = imagecreatefromstring(file_get_contents($file->getRealPath()));
+        // $resizedImage = imagescale($image, 500, 500);
+        
+        // // リサイズ後の画像を保存
+        // imagepng($resizedImage, $imagePath);
 
 
         Recipe::create([
