@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Recipe;
+use App\Models\Manual;
 use App\Http\Controllers\Controller;
 use App\Models\AgeMonthCategory;
 use App\Http\Requests\StoreRecipeRequest;
+use App\Http\Requests\StoreManualRequest;
 use App\Http\Requests\UpdateRecipeRequest;
 use App\Policies\AgeMonthCategoryPolicy;
 use Illuminate\Support\Facades\Auth;
@@ -24,12 +26,12 @@ class RecipeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return Inertia::render('PaidMember/Recipe/Index', [
-            'recipes' =>  Recipe::select('id', 'title')->get()            
-        ]);
-    }
+    // public function index()
+    // {
+    //     return Inertia::render('PaidMember/Recipe/Index', [
+    //         'recipes' =>  Recipe::select('id', 'title')->get()            
+    //     ]);
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -63,7 +65,6 @@ class RecipeController extends Controller
         $originalHeight = imagesy($image);
         $aspectRatio = $originalWidth / $originalHeight;
 
-        // リサイズする幅と高さを計算
         $resizedWidth = 500;
         $resizedHeight = 500;
 
@@ -75,18 +76,10 @@ class RecipeController extends Controller
 
         $resizedImage = imagescale($image, $resizedWidth, $resizedHeight);
 
-        // リサイズ後の画像を保存
         imagepng($resizedImage, $imagePath);
-        
-        // // 画像のリサイズ
-        // $image = imagecreatefromstring(file_get_contents($file->getRealPath()));
-        // $resizedImage = imagescale($image, 500, 500);
-        
-        // // リサイズ後の画像を保存
-        // imagepng($resizedImage, $imagePath);
 
 
-        Recipe::create([
+        $recipe = Recipe::create([
             'title' => $request->title,
             'ingredient_category_id' => $request->ingredient_category_id,
             'age_month_category_id' => $request->age_month_category_id,
@@ -94,6 +87,15 @@ class RecipeController extends Controller
             'time' => $request->time,
             'price' => $request->price,
             'filename' => $new_fname,
+        ]);
+
+        Manual::create([
+            'recipe_id' => $recipe->id,
+            'manual1' => $request->manual1,
+            'manual2' => $request->manual2,
+            'manual3' => $request->manual3,
+            'manual4' => $request->manual4,
+            'manual5' => $request->manual5,
         ]);
 
         return to_route('paid_member.dashboard');
@@ -107,11 +109,14 @@ class RecipeController extends Controller
      */
     public function show($id)
     {
-        $recipe = Recipe::with('ageMonthCategory')->findOrFail($id);
+        // $recipe = Recipe::findOrFail($id);
+        // $manual = Manual::with('recipe')->where("recipe_id", $id);
+        $recipe = Recipe::with(['ageMonthCategory', 'manual'])->findOrFail($id);
 
         // dd($recipe);
         return Inertia::render('PaidMember/Recipe/Show', [
             'recipe' => $recipe,
+            // 'manual' => $manual
         ]);
     }
 
