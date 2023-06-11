@@ -21,7 +21,6 @@ return new class extends Migration
             $table->text('manual3');
             $table->text('manual4');
             $table->text('manual5');
-            $table->text('manual6');
             $table->timestamps();
         });
     }

@@ -17,7 +17,6 @@ class manual extends Model
         'manual3',
         'manual4',
         'manual5',
-        'manual6',
     ];
 
     public function recipe()

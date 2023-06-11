@@ -5,6 +5,7 @@ use App\Http\Controllers\PaidMemberDetailController;
 use App\Http\Controllers\IngredientCategoryController;
 use App\Http\Controllers\AgeMonthCategoryController;
 use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\ManualController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -40,6 +41,9 @@ Route::resource('/age_month_category', AgeMOnthCategoryController::class)
 ->middleware(['auth:paid_members', 'verified']);
 
 Route::resource('/recipe', RecipeController::class)
+->middleware(['auth:paid_members', 'verified']);
+
+Route::resource('/manual', ManualController::class)
 ->middleware(['auth:paid_members', 'verified']);
 
 
