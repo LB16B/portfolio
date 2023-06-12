@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Recipe;
 use App\Models\Manual;
+use App\Models\Ingredient;
 use App\Http\Controllers\Controller;
 use App\Models\AgeMonthCategory;
 use App\Http\Requests\StoreRecipeRequest;
 use App\Http\Requests\StoreManualRequest;
+use App\Http\Requests\StoreIngredientRequest;
 use App\Http\Requests\UpdateRecipeRequest;
+use App\Http\Requests\UpdateIngredientRequest;
 use App\Policies\AgeMonthCategoryPolicy;
+use App\Policies\IngredientPolicy;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Illuminate\Contracts\Cache\Store;
@@ -98,6 +102,26 @@ class RecipeController extends Controller
             'manual5' => $request->manual5,
         ]);
 
+        Ingredient::create([
+            'recipe_id' => $recipe->id,
+            'ingredient1' => $request->ingredient1,
+            'ingredient2' => $request->ingredient2,
+            'ingredient3' => $request->ingredient3,
+            'ingredient4' => $request->ingredient4,
+            'ingredient5' => $request->ingredient5,
+            'ingredient6' => $request->ingredient6,
+            'ingredient7' => $request->ingredient7,
+            'ingredient8' => $request->ingredient8,
+            'amount1' => $request->amount1,
+            'amount2' => $request->amount2,
+            'amount3' => $request->amount3,
+            'amount4' => $request->amount4,
+            'amount5' => $request->amount5,
+            'amount6' => $request->amount6,
+            'amount7' => $request->amount7,
+            'amount8' => $request->amount8,
+        ]);
+
         return to_route('paid_member.dashboard');
     }
 
@@ -109,14 +133,11 @@ class RecipeController extends Controller
      */
     public function show($id)
     {
-        // $recipe = Recipe::findOrFail($id);
-        // $manual = Manual::with('recipe')->where("recipe_id", $id);
-        $recipe = Recipe::with(['ageMonthCategory', 'manual'])->findOrFail($id);
+        $recipe = Recipe::with(['ageMonthCategory', 'manual', 'ingredient'])->findOrFail($id);
 
         // dd($recipe);
         return Inertia::render('PaidMember/Recipe/Show', [
             'recipe' => $recipe,
-            // 'manual' => $manual
         ]);
     }
 

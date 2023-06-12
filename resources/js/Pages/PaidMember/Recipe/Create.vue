@@ -13,12 +13,27 @@ const form = reactive ({
         price: null,
         filename: null,
         file: null,
-        // recipe_id: null,
         manual1: null,
         manual2: null,
         manual3: null,
         manual4: null,
         manual5: null,
+        Ingredient1: null,
+        Ingredient2: null,
+        Ingredient3: null,
+        Ingredient4: null,
+        Ingredient5: null,
+        Ingredient6: null,
+        Ingredient7: null,
+        Ingredient8: null,
+        amount1: null,
+        amount2: null,
+        amount3: null,
+        amount4: null,
+        amount5: null,
+        amount6: null,
+        amount7: null,
+        amount8: null,
 })
 
 const storeRecipe = () => {
@@ -147,13 +162,6 @@ const storeRecipe = () => {
                                             </div>
                                         </div>
 
-                                        <!-- <div class="p-2 w-full">
-                                            <div class="relative">
-                                                <label for="recipe_id" class="leading-7 text-sm text-gray-600">recipe_id</label>
-                                                <input type="number" id="recipe_id" name="recipe_id" v-model="form.recipe_id" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                                            </div>
-                                        </div> -->
-
                                         <div class="p-2 w-full">
                                             <div class="relative">
                                                 <label for="manual1" class="leading-7 text-sm text-gray-600">手順1</label>
@@ -186,6 +194,118 @@ const storeRecipe = () => {
                                             <div class="relative">
                                                 <label for="manual5" class="leading-7 text-sm text-gray-600">手順5</label>
                                                 <input type="text" id="manual5" name="manual5" v-model="form.manual5" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                            </div>
+                                        </div>
+
+                                        <div class="p-2 w-full">
+                                            <div class="relative">
+                                                <label for="ingredient1" class="leading-7 text-sm text-gray-600">材料1</label>
+                                                <input type="text" id="ingredient1" name="ingredient1" v-model="form.ingredient1" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                            </div>
+                                        </div>
+
+                                        <div class="p-2 w-full">
+                                            <div class="relative">
+                                                <label for="ingredient2" class="leading-7 text-sm text-gray-600">材料2</label>
+                                                <input type="text" id="ingredient2" name="ingredient2" v-model="form.ingredient2" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                            </div>
+                                        </div>
+
+                                        <div class="p-2 w-full">
+                                            <div class="relative">
+                                                <label for="ingredient3" class="leading-7 text-sm text-gray-600">材料3</label>
+                                                <input type="text" id="ingredient3" name="ingredient3" v-model="form.ingredient3" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                            </div>
+                                        </div>
+
+                                        <div class="p-2 w-full">
+                                            <div class="relative">
+                                                <label for="ingredient4" class="leading-7 text-sm text-gray-600">材料4</label>
+                                                <input type="text" id="ingredient4" name="ingredient4" v-model="form.ingredient4" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                            </div>
+                                        </div>
+
+                                        <div class="p-2 w-full">
+                                            <div class="relative">
+                                                <label for="ingredient5" class="leading-7 text-sm text-gray-600">材料5</label>
+                                                <input type="text" id="ingredient5" name="ingredient5" v-model="form.ingredient5" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                            </div>
+                                        </div>
+
+                                        <div class="p-2 w-full">
+                                            <div class="relative">
+                                                <label for="ingredient6" class="leading-7 text-sm text-gray-600">材料6</label>
+                                                <input type="text" id="ingredient6" name="ingredient6" v-model="form.ingredient6" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                            </div>
+                                        </div>
+
+                                        <div class="p-2 w-full">
+                                            <div class="relative">
+                                                <label for="ingredient7" class="leading-7 text-sm text-gray-600">材料7</label>
+                                                <input type="text" id="ingredient7" name="ingredient7" v-model="form.ingredient7" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                            </div>
+                                        </div>
+
+                                        <div class="p-2 w-full">
+                                            <div class="relative">
+                                                <label for="ingredient8" class="leading-7 text-sm text-gray-600">材料8</label>
+                                                <input type="text" id="ingredient8" name="ingredient8" v-model="form.ingredient8" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                            </div>
+                                        </div>
+
+                                        <div class="p-2 w-full">
+                                            <div class="relative">
+                                                <label for="amount1" class="leading-7 text-sm text-gray-600">容量1</label>
+                                                <input type="text" id="amount1" name="amount1" v-model="form.amount1" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                            </div>
+                                        </div>
+
+                                        <div class="p-2 w-full">
+                                            <div class="relative">
+                                                <label for="amount2" class="leading-7 text-sm text-gray-600">容量2</label>
+                                                <input type="text" id="amount2" name="amount2" v-model="form.amount2" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                            </div>
+                                        </div>
+
+                                        <div class="p-2 w-full">
+                                            <div class="relative">
+                                                <label for="amount3" class="leading-7 text-sm text-gray-600">容量3</label>
+                                                <input type="text" id="amount3" name="amount3" v-model="form.amount3" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                            </div>
+                                        </div>
+
+                                        <div class="p-2 w-full">
+                                            <div class="relative">
+                                                <label for="amount4" class="leading-7 text-sm text-gray-600">容量4</label>
+                                                <input type="text" id="amount4" name="amount4" v-model="form.amount4" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                            </div>
+                                        </div>
+
+                                        <div class="p-2 w-full">
+                                            <div class="relative">
+                                                <label for="amount5" class="leading-7 text-sm text-gray-600">容量5</label>
+                                                <input type="text" id="amount5" name="amount5" v-model="form.amount5" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                            </div>
+                                        </div>
+
+                                        <div class="p-2 w-full">
+                                            <div class="relative">
+                                                <label for="amount6" class="leading-7 text-sm text-gray-600">容量6</label>
+                                                <input type="text" id="amount6" name="amount6" v-model="form.amount6" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                            </div>
+                                        </div>
+
+                                        <div class="p-2 w-full">
+                                            <div class="relative">
+                                                <label for="amount7" class="leading-7 text-sm text-gray-600">容量7</label>
+                                                <input type="text" id="amount7" name="amount7" v-model="form.amount7" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                            </div>
+                                        </div>
+
+                                        <div class="p-2 w-full">
+                                            <div class="relative">
+                                                <label for="amount8" class="leading-7 text-sm text-gray-600">容量8</label>
+                                                <input type="text" id="amount8" name="amount8" v-model="form.amount8" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                             </div>
                                         </div>
                                         

@@ -4,6 +4,7 @@ use App\Http\Controllers\PaidMemberProfileController;
 use App\Http\Controllers\PaidMemberDetailController;
 use App\Http\Controllers\IngredientCategoryController;
 use App\Http\Controllers\AgeMonthCategoryController;
+use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\ManualController;
 use Illuminate\Foundation\Application;
@@ -43,8 +44,11 @@ Route::resource('/age_month_category', AgeMOnthCategoryController::class)
 Route::resource('/recipe', RecipeController::class)
 ->middleware(['auth:paid_members', 'verified']);
 
-Route::resource('/manual', ManualController::class)
-->middleware(['auth:paid_members', 'verified']);
+// Route::resource('/manual', ManualController::class)
+// ->middleware(['auth:paid_members', 'verified']);
+
+// Route::resource('/ingredient', IngredientController::class)
+// ->middleware(['auth:paid_members', 'verified']);
 
 
 Route::get('/dashboard', function () {

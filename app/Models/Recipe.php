@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\IngredientCategory;
 use App\Models\AgeMonthCategory;
 use App\Models\Manual;
+use App\Models\Ingredient;
 
 class Recipe extends Model
 {
@@ -35,5 +36,10 @@ class Recipe extends Model
     public function manual()
     {
         return $this->hasOne(Manual::class);
+    }
+
+    public function ingredient()
+    {
+        return $this->hasOne(Ingredient::class);
     }
 }
