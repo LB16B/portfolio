@@ -26,11 +26,8 @@ const showingNavigationDropdown = ref(false);
                 <NavLink :href="route('paid_member.recipe.create')" :active="route().current('paid_member.recipe.create')">
                     レシピ投稿              
                 </NavLink>
-                <NavLink :href="route('paid_member.age_month_category.index')" :active="route().current('paid_member.age_month_category.index')">
-                    レシピ               
-                </NavLink>
                 <NavLink :href="route('paid_member.category.index')" :active="route().current('paid_member.category.index')">
-                    カテゴリー               
+                    レシピ              
                 </NavLink>
                 <NavLink :href="route('paid_member.detail.index')" :active="route().current('paid_member.detail.index')">
                     プロフィール

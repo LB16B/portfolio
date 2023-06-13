@@ -108,6 +108,7 @@ class RecipeFactory extends Factory
 
         return [
             'title' => JapaneseFakerProvider::foodName(),
+            'paid_member_id' => $this->faker->numberBetween(1, 10),
             'ingredient_category_id' => $this->faker->numberBetween(1, 15),
             'age_month_category_id' => $this->faker->numberBetween(1, 5),
             'cal' => $this->faker->numberBetween(100, 1000),

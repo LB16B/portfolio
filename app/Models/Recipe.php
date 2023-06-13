@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\IngredientCategory;
 use App\Models\AgeMonthCategory;
 use App\Models\Manual;
+use App\Models\PaidMember;
 use App\Models\Ingredient;
 
 class Recipe extends Model
@@ -15,6 +16,7 @@ class Recipe extends Model
 
     protected $fillable = [
         'title',
+        'paid_member_id',
         'ingredient_category_id',
         'age_month_category_id',
         'cal',
@@ -41,5 +43,10 @@ class Recipe extends Model
     public function ingredient()
     {
         return $this->hasOne(Ingredient::class);
+    }
+
+    public function paid_member()
+    {
+        return $this->hasOne(PaidMember::class);
     }
 }

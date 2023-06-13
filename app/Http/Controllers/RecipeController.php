@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Recipe;
 use App\Models\Manual;
 use App\Models\Ingredient;
+use App\Models\PaidMember;
 use App\Http\Controllers\Controller;
 use App\Models\AgeMonthCategory;
 use App\Http\Requests\StoreRecipeRequest;
@@ -85,6 +86,7 @@ class RecipeController extends Controller
 
         $recipe = Recipe::create([
             'title' => $request->title,
+            'paid_member_id' => Auth::id(),
             'ingredient_category_id' => $request->ingredient_category_id,
             'age_month_category_id' => $request->age_month_category_id,
             'cal' => $request->cal,

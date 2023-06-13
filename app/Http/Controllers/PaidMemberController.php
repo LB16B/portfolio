@@ -19,7 +19,7 @@ class PaidMemberController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
