@@ -8,6 +8,7 @@ use App\Models\Ingredient;
 use App\Models\PaidMember;
 use App\Http\Controllers\Controller;
 use App\Models\AgeMonthCategory;
+use App\Models\IngredientCategory;
 use App\Http\Requests\StoreRecipeRequest;
 use App\Http\Requests\StoreManualRequest;
 use App\Http\Requests\StoreIngredientRequest;
@@ -31,12 +32,22 @@ class RecipeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function index()
-    // {
-    //     return Inertia::render('PaidMember/Recipe/Index', [
-    //         'recipes' =>  Recipe::select('id', 'title')->get()            
-    //     ]);
-    // }
+    public function index()
+    {
+        $paid_member = Auth::user();
+        $recipes = Recipe::where('paid_member_id', $paid_member->id)->get();
+
+        $ingredientCategories = IngredientCategory::with('recipes')->get();
+        $ageMonthCategories = AgeMonthCategory::select('id', 'name')->get();
+
+
+        // dd($recipes);
+        return Inertia::render('PaidMember/Recipe/Index', [
+            'ingredient_categories' => $ingredientCategories,
+            'age_month_categories' => $ageMonthCategories,
+            'recipes' => $recipes,
+        ]);
+    }
 
     /**
      * Show the form for creating a new resource.
