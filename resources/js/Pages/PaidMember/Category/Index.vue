@@ -84,7 +84,6 @@ defineProps({
                             
                             <ul>
                                 <li v-for="recipe in ingredient_category.recipes" :key="recipe.id">
-                                    <!-- <h2 class="text-gray-900 title-font font-medium">{{ recipe.title }}</h2> -->
                                     <a class="block relative h-48 rounded overflow-hidden">
                                         <img :src="'/recipe_images/' + recipe.filename" class="rounded-md w-full h-full">
                                     </a>

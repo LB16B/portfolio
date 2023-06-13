@@ -114,13 +114,15 @@ class ManualFakerProvider extends Base
 class ManualFactory extends Factory
 {
     protected $model = Manual::class;
+    protected static $recipeId = 1;
 
     public function definition()
     {
         $this->faker->addProvider(new ManualFakerProvider($this->faker));
 
         return [
-            'recipe_id' => $this->faker->numberBetween(1, 1000),
+            // 'recipe_id' => $this->faker->numberBetween(1, 1000),
+            'recipe_id' => self::$recipeId++,
             'manual1' => ManualFakerProvider::manual1(),
             'manual2' => ManualFakerProvider::manual2(),
             'manual3' => ManualFakerProvider::manual3(),

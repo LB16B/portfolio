@@ -77,13 +77,16 @@ class AmountFakerProvider extends Base{
 
 class IngredientFactory extends Factory
 {
+    protected static $recipeId = 1;
+    
     public function definition()
     {
         $this->faker->addProvider(new IngredientFakerProvider($this->faker));
         $this->faker->addProvider(new AmountFakerProvider($this->faker));
 
         return [
-            'recipe_id' => $this->faker->numberBetween(1, 1000),
+            // 'recipe_id' => $this->faker->numberBetween(1, 1000),
+            'recipe_id' => self::$recipeId++,
             'ingredient1' => IngredientFakerProvider::ingredient(),
             'ingredient2' => IngredientFakerProvider::ingredient(),
             'ingredient3' => IngredientFakerProvider::ingredient(),

@@ -37,14 +37,7 @@ class RecipeController extends Controller
         $paid_member = Auth::user();
         $recipes = Recipe::where('paid_member_id', $paid_member->id)->get();
 
-        $ingredientCategories = IngredientCategory::with('recipes')->get();
-        $ageMonthCategories = AgeMonthCategory::select('id', 'name')->get();
-
-
-        // dd($recipes);
         return Inertia::render('PaidMember/Recipe/Index', [
-            'ingredient_categories' => $ingredientCategories,
-            'age_month_categories' => $ageMonthCategories,
             'recipes' => $recipes,
         ]);
     }
@@ -162,7 +155,13 @@ class RecipeController extends Controller
      */
     public function edit(Recipe $recipe)
     {
-        //
+        $manual = Manual::where('recipe_id', $recipe->id)->first();
+
+        // dd($manual);
+        return Inertia::render('PaidMember/Recipe/Edit', [
+            'recipe' => $recipe,
+            'manual' => $manual
+        ]);
     }
 
     /**
