@@ -156,11 +156,13 @@ class RecipeController extends Controller
     public function edit(Recipe $recipe)
     {
         $manual = Manual::where('recipe_id', $recipe->id)->first();
-
-        // dd($manual);
+        $ingredient = Ingredient::where('recipe_id', $recipe->id)->first();
+        
+        // dd($ingredient);
         return Inertia::render('PaidMember/Recipe/Edit', [
             'recipe' => $recipe,
-            'manual' => $manual
+            'manual' => $manual,
+            'ingredient' => $ingredient
         ]);
     }
 
@@ -173,7 +175,80 @@ class RecipeController extends Controller
      */
     public function update(UpdateRecipeRequest $request, Recipe $recipe)
     {
-        //
+        // dd($request);
+
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $extension = $file->getClientOriginalExtension();
+
+            $random_name = Str::random(15);
+            $new_fname = date('Y-m-d') . $random_name . '.' . $extension;
+            
+            $imagePath = public_path('recipe_images') . '/' . $new_fname;
+    
+            $image = imagecreatefromstring(file_get_contents($file->getRealPath()));
+            $originalWidth = imagesx($image);
+            $originalHeight = imagesy($image);
+            $aspectRatio = $originalWidth / $originalHeight;
+    
+            $resizedWidth = 500;
+            $resizedHeight = 500;
+    
+            if ($aspectRatio > 1) {
+                $resizedHeight = $resizedWidth / $aspectRatio;
+            } else {
+                $resizedWidth = $resizedHeight * $aspectRatio;
+            }
+    
+            $resizedImage = imagescale($image, $resizedWidth, $resizedHeight);
+    
+            imagepng($resizedImage, $imagePath);
+        
+   
+        } else {
+            $new_fname = $recipe->filename;  
+        }
+    
+
+
+        $manual = Manual::where('recipe_id', $recipe->id)->first();
+        $ingredient = Ingredient::where('recipe_id', $recipe->id)->first();
+
+        $recipe->title = $request->title;
+        $recipe-> paid_member_id = Auth::id();
+        $recipe->ingredient_category_id = $request->ingredient_category_id;
+        $recipe->age_month_category_id = $request->age_month_category_id;
+        $recipe->cal = $request->cal;
+        $recipe->time = $request->time;
+        $recipe->price = $request->price;
+        $recipe->filename = $new_fname;
+        $manual->manual1 = $request->manual1;
+        $manual->manual2 = $request->manual2;
+        $manual->manual3 = $request->manual3;
+        $manual->manual4 = $request->manual4;
+        $manual->manual5 = $request->manual5;
+        $ingredient->ingredient1 = $request->ingredient1;
+        $ingredient->ingredient2 = $request->ingredient2;
+        $ingredient->ingredient3 = $request->ingredient3;
+        $ingredient->ingredient4 = $request->ingredient4;
+        $ingredient->ingredient5 = $request->ingredient5;
+        $ingredient->ingredient6 = $request->ingredient6;
+        $ingredient->ingredient7 = $request->ingredient7;
+        $ingredient->ingredient8 = $request->ingredient8;
+        $ingredient->amount1 = $request->amount1;
+        $ingredient->amount2 = $request->amount2;
+        $ingredient->amount3 = $request->amount3;
+        $ingredient->amount4 = $request->amount4;
+        $ingredient->amount5 = $request->amount5;
+        $ingredient->amount6 = $request->amount6;
+        $ingredient->amount7 = $request->amount7;
+        $ingredient->amount8 = $request->amount8;
+
+        $recipe->save();
+        $manual->save();
+        $ingredient->save();
+
+        return to_route('paid_member.recipe.index');
     }
 
     /**

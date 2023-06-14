@@ -3,15 +3,16 @@ import PaidMemberAuthenticatedLayout from '@/Layouts/PaidMemberAuthenticatedLayo
 import { ref, reactive, onMounted  } from 'vue';
 import { Head, useForm } from '@inertiajs/vue3';
 import { Inertia } from '@inertiajs/inertia'
-import { defineProps } from 'vue'
+import { defineProps } from 'vue';
 
 const props = defineProps({
-    recipe: Object
+    recipe: Object,
+    manual: Object,
+    ingredient: Object,
 })
-
-// const paid_member_id = ref('');
-
-const form = reactive ({
+ 
+const form = useForm ({
+        id: props.recipe.id,
         title: props.recipe.title,
         paid_member_id: props.recipe.paid_member_id,
         ingredient_category_id: props.recipe.ingredient_category_id,
@@ -20,34 +21,35 @@ const form = reactive ({
         time: props.recipe.time,
         price: props.recipe.price,
         filename: props.recipe.filename,
-        file: props.recipe.file,
+        file: null,
         manual1: props.manual ? props.manual.manual1 : '',
         manual2: props.manual ? props.manual.manual2 : '',
         manual3: props.manual ? props.manual.manual3 : '',
         manual4: props.manual ? props.manual.manual4 : '',
         manual5: props.manual ? props.manual.manual5 : '',
-        Ingredient1: props.recipe.ingredient1,
-        Ingredient2: props.recipe.ingredient2,
-        Ingredient3: props.recipe.ingredient3,
-        Ingredient4: props.recipe.ingredient4,
-        Ingredient5: props.recipe.ingredient5,
-        Ingredient6: props.recipe.ingredient6,
-        Ingredient7: props.recipe.ingredient7,
-        Ingredient8: props.recipe.ingredient8,
-        amount1: props.recipe.amount1,
-        amount2: props.recipe.amount2,
-        amount3: props.recipe.amount3,
-        amount4: props.recipe.amount4,
-        amount5: props.recipe.amount5,
-        amount6: props.recipe.amount6,
-        amount7: props.recipe.amount7,
-        amount8: props.recipe.amount8,
-        url: ''
+        ingredient1: props.ingredient.ingredient1,
+        ingredient2: props.ingredient.ingredient2,
+        ingredient3: props.ingredient.ingredient3,
+        ingredient4: props.ingredient.ingredient4,
+        ingredient5: props.ingredient.ingredient5,
+        ingredient6: props.ingredient.ingredient6,
+        ingredient7: props.ingredient.ingredient7,
+        ingredient8: props.ingredient.ingredient8,
+        amount1: props.ingredient.amount1,
+        amount2: props.ingredient.amount2,
+        amount3: props.ingredient.amount3,
+        amount4: props.ingredient.amount4,
+        amount5: props.ingredient.amount5,
+        amount6: props.ingredient.amount6,
+        amount7: props.ingredient.amount7,
+        amount8: props.ingredient.amount8,
 })
 
-const storeRecipe = () => {
-    Inertia.post('/paid_member/recipe', form)
-}
+const updateRecipe = () => {
+    if (form.id) {
+    Inertia.put(route('paid_member.recipe.update', { recipe: form.id }), form);
+    }
+};
 
 </script>
 
@@ -64,24 +66,28 @@ const storeRecipe = () => {
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
                     <section id="vue" class="text-gray-600 body-font relative">
-                        <form @submit.prevent="storeRecipe" enctype="multipart/form-data">
+                        <form @submit.prevent="updateRecipe" enctype="multipart/form-data">
                             <div class="container px-5 py-8 mx-auto">
                                 <div class="lg:w-1/2 md:w-2/3 mx-auto">
                                     <div class="flex flex-wrap -m-2">
 
                                         <div class="p-2 w-full">
                                             <div class="relative">
-                                                <div v-if="url === ''">
-                                                    <img src="/images/no_image.png">
+                                                <div>
+                                                    <div v-if="currentImage">
+                                                        <img :src="currentImage" alt="Current Image" />
+                                                    </div>
+                                                    <div v-else>
+                                                        <img :src="'/recipe_images/' + recipe.filename" alt="team" class="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4">
+                                                    </div>
+                                                </div>                                          
+                                                <div class="p-2 w-full">
+                                                    <div class="relative">
+                                                        <label for="filename" class="leading-7 text-sm text-gray-600">画像</label>
+                                                        <input @change="handleImageChange"  id="file" name="file"  type="file" @input="form.file = $event.target.files[0]" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                                    </div>
                                                 </div>
-                                                <div v-else>
-                                                    <!-- <img class="image-preview" v-bind:src="url"> -->
-                                                    <img class="image-preview" :src="form.url">
-                                                </div>
-                                                
-                                                <label for="filename" class="leading-7 text-sm text-gray-600">画像</label>
-                                                <input ref="preview" v-on:change="show" @change="fileSelected" id="file" name="file"  type="file" @input="form.file = $event.target.files[0]"
-                                                    class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+
                                             </div>
                                         </div>
 
@@ -91,7 +97,7 @@ const storeRecipe = () => {
                                                 <input type="text" id="title" name="title" v-model="form.title" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                             </div>
                                         </div>
-                                    
+                                   
 
                                         <div class="p-2 w-full">
                                             <div class="relative">
@@ -335,20 +341,27 @@ const storeRecipe = () => {
     </PaidMemberAuthenticatedLayout>
 </template>
 
+
 <script>
 export default {
-    name: "ProfileImagePreviewComponent",
+  data() {
+    return {
+      currentImage: null,
+    };
+  },
+  methods: {
+    handleImageChange(event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
 
-    data() {
-        return {
-            url:""
-        }
+      reader.onload = (e) => {
+        this.currentImage = e.target.result;
+      };
+
+      if (file) {
+        reader.readAsDataURL(file);
+      }
     },
-    methods: {
-        show() {
-            const file = this.$refs.preview.files[0];
-            this.url = URL.createObjectURL(file);
-        }
-    }
-}
+  },
+};
 </script>
