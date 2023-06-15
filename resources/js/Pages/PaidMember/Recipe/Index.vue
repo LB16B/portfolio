@@ -4,10 +4,15 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
 import NavLink from '@/Components/NavLink.vue';
 import { Inertia } from '@inertiajs/inertia'
 
-
 defineProps({
     recipes: Array,
 })
+
+const deleteRecipe = id => {
+    Inertia.delete(route('paid_member.recipe.destroy', { recipe: id }), {
+        onBefore: () => confirm('本当に削除しますか?')
+    })
+}
 </script>
 
 <template>
@@ -37,7 +42,8 @@ defineProps({
                                             <p class="mb-4">{{ recipe.cal }}cal / {{ recipe.time }}分 / {{ recipe.price }} 円</p>
                                             <span class="inline-flex">
                                                 <Link :href="route('paid_member.recipe.show', { recipe: recipe.id })" class="mr-4">詳細</Link>
-                                                <Link :href="route('paid_member.recipe.edit', { recipe: recipe.id })">編集</Link>
+                                                <Link :href="route('paid_member.recipe.edit', { recipe: recipe.id })" class="mr-4">編集</Link>
+                                                <button @click="deleteRecipe(recipe.id)" class="mr-4">削除</button>
                                             </span>
                                         </div>
                                     </div>

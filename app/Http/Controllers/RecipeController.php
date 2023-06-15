@@ -175,7 +175,7 @@ class RecipeController extends Controller
      */
     public function update(UpdateRecipeRequest $request, Recipe $recipe)
     {
-        // dd($request);
+        dd($request->file);
 
         if ($request->hasFile('file')) {
             $file = $request->file('file');
@@ -259,6 +259,13 @@ class RecipeController extends Controller
      */
     public function destroy(Recipe $recipe)
     {
-        //
+        $manual = Manual::where('recipe_id', $recipe->id)->first();
+        $ingredient = Ingredient::where('recipe_id', $recipe->id)->first();
+
+        $ingredient->delete();
+        $manual->delete();
+        $recipe->delete();
+
+        return to_route('paid_member.recipe.index');
     }
 }
