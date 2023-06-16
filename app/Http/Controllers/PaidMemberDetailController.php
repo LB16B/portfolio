@@ -55,7 +55,7 @@ class PaidMemberDetailController extends Controller
     {
         $paid_member_detail = PaidMemberDetail::findOrFail($id);
 
-        $paid_member_detail->paid_member_id = $request->paid_member_id;
+        $paid_member_detail->paid_member_id = Auth::id();
         $paid_member_detail->nick_name = $request->nick_name;
         $paid_member_detail->greeting = $request->greeting;
 

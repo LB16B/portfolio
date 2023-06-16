@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AdminSeeder::class,
             PaidMemberSeeder::class,
-            PaidMemberDetailSeeder::class,
+            // PaidMemberDetailSeeder::class,
             IngredientCategorySeeder::class,
             AgeMonthCategorySeeder::class,
         ]);
@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\Recipe::factory(1000)->create();
         \App\Models\Manual::factory(1000)->create();
         \App\Models\ingredient::factory(1000)->create();
+        \App\Models\Like::factory(3000)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

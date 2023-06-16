@@ -6,11 +6,19 @@ import Pagination from '@/Components/Pagination.vue';
 import { Inertia } from '@inertiajs/inertia'
 
 defineProps({
-    recipe: Object,
-    manual: Object
+    recipe: {
+        type: Object,
+        required: true
+    },
+    likes: Array,
+    likeCount: Number,
 })
 
 
+const storeLike = id => {
+    Inertia.put(route('paid_member.like.update', {like: id}), {
+    })
+}
 </script>
 
 <template>
@@ -21,8 +29,17 @@ defineProps({
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
+                    いいね数 {{ likeCount }}
+                    <p>recipe id：{{ recipe.id }}</p>
+                    <div v-if="$page.props.auth.user.id != recipe.paid_member_id">
+                        <button @click="storeLike(recipe.id)" class="mr-4">いいねする</button>
+                    </div>
+
+                    <p>{{ $page.props.auth.user.id }}:{{ recipe.paid_member_id }}</p>
+
                     <section class="text-gray-600 body-font overflow-hidden">
                     <div class="container px-5 py-24 mx-auto">
+
                     <div class="lg:w-4/5 mx-auto flex flex-wrap">    
                             <img :src="'/recipe_images/' + recipe.filename" class="lg:w-1/2 w-full lg:h-auto  h-100 object-cover object-center rounded">
                         <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">

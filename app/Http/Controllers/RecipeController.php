@@ -6,6 +6,7 @@ use App\Models\Recipe;
 use App\Models\Manual;
 use App\Models\Ingredient;
 use App\Models\PaidMember;
+use App\Models\Like;
 use App\Http\Controllers\Controller;
 use App\Models\AgeMonthCategory;
 use App\Models\IngredientCategory;
@@ -52,12 +53,11 @@ class RecipeController extends Controller
         return Inertia::render('PaidMember/Recipe/Create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreRecipeRequest  $request
-     * @return \Illuminate\Http\Response
-     */
+    // public function like_store(Recipe $recipe)
+    // {
+       
+    // }
+
     public function store(StoreRecipeRequest $request)
     {
     
@@ -131,48 +131,33 @@ class RecipeController extends Controller
         return to_route('paid_member.dashboard');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Recipe  $recipe
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         $recipe = Recipe::with(['ageMonthCategory', 'manual', 'ingredient'])->findOrFail($id);
-
-        // dd($recipe);
+        $likes = Like::where('recipe_id', $recipe->id)->get();
+        $likeCount = $likes->count();
+        // dd($likes);
         return Inertia::render('PaidMember/Recipe/Show', [
             'recipe' => $recipe,
+            'likes' => $likes,
+            'likeCount' => $likeCount,
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Recipe  $recipe
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Recipe $recipe)
     {
         $manual = Manual::where('recipe_id', $recipe->id)->first();
         $ingredient = Ingredient::where('recipe_id', $recipe->id)->first();
         
-        // dd($ingredient);
         return Inertia::render('PaidMember/Recipe/Edit', [
             'recipe' => $recipe,
             'manual' => $manual,
-            'ingredient' => $ingredient
+            'ingredient' => $ingredient,
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateRecipeRequest  $request
-     * @param  \App\Models\Recipe  $recipe
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(UpdateRecipeRequest $request, Recipe $recipe)
     {
         dd($request->file);

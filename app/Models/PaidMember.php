@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\PaidMemberDetail;
 use App\Models\Recipe;
+use App\Models\Like;
 
 class PaidMember extends Authenticatable
 {
@@ -59,4 +60,9 @@ class PaidMember extends Authenticatable
     {
         return $this->belongsTo(Recipe::class);
     }
+
+    public function likes() {
+        return $this->hasMany(Like::class);
+    }
+
 }

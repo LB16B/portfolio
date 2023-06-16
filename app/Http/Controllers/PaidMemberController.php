@@ -56,7 +56,7 @@ class PaidMemberController extends Controller
                 
                 PaidMemberDetail::create([
                     'paid_member_id' => $paid_member->id,
-                    'nick_name' => 'nick_name',
+                    'nick_name' => '',
                     'greeting' => '',
                 ]);
             }, 2);
@@ -65,17 +65,6 @@ class PaidMemberController extends Controller
             throw $e;
         }
 
-        // PaidMember::create([
-        //     'name' => $request->name,
-        //     'kana' => $request->kana,
-        //     'tel' => $request->tel,
-        //     'email' => $request->email,
-        //     'postcode' => $request->postcode,
-        //     'address' => $request->address,
-        //     'birthday' => $request->birthday,
-        //     'gender' => $request->gender,
-        //     'memo' => $request->memo,
-        // ]);
     }
 
     /**

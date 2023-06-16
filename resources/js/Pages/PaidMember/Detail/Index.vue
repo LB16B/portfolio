@@ -23,7 +23,8 @@ defineProps({
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 bg-white border-b border-gray-200">    
+                    <div class="p-6 bg-white border-b border-gray-200">
+
                     
                         <section class="text-gray-600 body-font relative flex justify-center">
                             <div class="container px-5 py-8 mx-auto ">
@@ -32,6 +33,7 @@ defineProps({
                                 <div class="flex flex-wrap -m-2">
                                     <div v-for="paid_member_detail in paid_member_details" :key="paid_member_detail.id">
                                         <div v-if="paid_member_detail.paid_member_id === $page.props.auth.user.id">
+
 
                                         <div class="lg:max-w-lg lg:w-full mb-10 md:mb-0 p-2 ">
                                             <div v-if="paid_member_detail.filename === ''" class="relative">
@@ -66,6 +68,7 @@ defineProps({
                                                 <Link as="button" :href="route('paid_member.detail.edit', { detail: paid_member_detail.id })" class="inline-flex text-white bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded text-lg">編集</Link>
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>

@@ -9,6 +9,7 @@ use App\Models\AgeMonthCategory;
 use App\Models\Manual;
 use App\Models\PaidMember;
 use App\Models\Ingredient;
+use App\Models\Like;
 
 class Recipe extends Model
 {
@@ -48,5 +49,16 @@ class Recipe extends Model
     public function paid_member()
     {
         return $this->hasOne(PaidMember::class);
+    }
+
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function isLiked($paid_member_id)
+    {
+        return $this->likes()->where('paid_member_id', $paid_member_id)->exists();
     }
 }
