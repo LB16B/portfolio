@@ -38,7 +38,6 @@ const deleteRecipe = id => {
                                         <img :src="'/recipe_images/' + recipe.filename" alt="team" class="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4">
                                         <div class="flex-grow sm:pl-8">
                                             <h2 class="title-font font-medium text-lg text-gray-900">{{ recipe.title }}</h2>
-                                            <h3 class="text-gray-500 mb-3">aaaa</h3>
                                             <p class="mb-4">{{ recipe.cal }}cal / {{ recipe.time }}分 / {{ recipe.price }} 円</p>
                                             <span class="inline-flex">
                                                 <Link :href="route('paid_member.recipe.show', { recipe: recipe.id })" class="mr-4">詳細</Link>

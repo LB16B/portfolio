@@ -160,7 +160,7 @@ class RecipeController extends Controller
 
     public function update(UpdateRecipeRequest $request, Recipe $recipe)
     {
-        dd($request->file);
+        // dd($request->file);
 
         if ($request->hasFile('file')) {
             $file = $request->file('file');
