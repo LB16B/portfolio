@@ -29,13 +29,10 @@ const storeLike = id => {
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
-                    いいね数 {{ likeCount }}
-                    <p>recipe id：{{ recipe.id }}</p>
+                    <p>いいね数 {{ likeCount }}</p>
                     <div v-if="$page.props.auth.user.id != recipe.paid_member_id">
                         <button @click="storeLike(recipe.id)" class="mr-4">いいねする</button>
                     </div>
-
-                    <p>{{ $page.props.auth.user.id }}:{{ recipe.paid_member_id }}</p>
 
                     <section class="text-gray-600 body-font overflow-hidden">
                     <div class="container px-5 py-24 mx-auto">

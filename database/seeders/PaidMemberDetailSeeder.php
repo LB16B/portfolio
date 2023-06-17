@@ -16,10 +16,66 @@ class PaidMemberDetailSeeder extends Seeder
     public function run()
     {
         DB::table('paid_member_details')->insert([
-            'paid_member_id' => '1',
-            'nick_name' => 'test',
-            'greeting' => 'ここに挨拶文が入ります。ここに挨拶文が入ります。ここに挨拶文が入ります。ここに挨拶文が入ります。ここに挨拶文が入ります。ここに挨拶文が入ります。ここに挨拶文が入ります。',
-            'filename' => '',
+            [
+                'paid_member_id' => '1',
+                'nick_name' => '',
+                'greeting' => '',
+                'filename' => '',
+            ],
+            [
+                'paid_member_id' => '2',
+                'nick_name' => '',
+                'greeting' => '',
+                'filename' => '',
+            ],
+            [
+                'paid_member_id' => '3',
+                'nick_name' => '',
+                'greeting' => '',
+                'filename' => '',
+            ],
+            [
+                'paid_member_id' => '4',
+                'nick_name' => '',
+                'greeting' => '',
+                'filename' => '',
+            ],
+            [
+                'paid_member_id' => '5',
+                'nick_name' => '',
+                'greeting' => '',
+                'filename' => '',
+            ],
+            [
+                'paid_member_id' => '6',
+                'nick_name' => '',
+                'greeting' => '',
+                'filename' => '',
+            ],
+            [
+                'paid_member_id' => '7',
+                'nick_name' => '',
+                'greeting' => '',
+                'filename' => '',
+            ],
+            [
+                'paid_member_id' => '8',
+                'nick_name' => '',
+                'greeting' => '',
+                'filename' => '',
+            ],
+            [
+                'paid_member_id' => '9',
+                'nick_name' => '',
+                'greeting' => '',
+                'filename' => '',
+            ],
+            [
+                'paid_member_id' => '10',
+                'nick_name' => '',
+                'greeting' => '',
+                'filename' => '',
+            ],
             ]);
     }
 }
