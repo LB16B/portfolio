@@ -45,9 +45,19 @@ Route::resource('/age_month_category', AgeMOnthCategoryController::class)
 Route::resource('/recipe', RecipeController::class)
 ->middleware(['auth:paid_members', 'verified']);
 
-Route::resource('/like', LikeController::class)
-->middleware(['auth:paid_members', 'verified']);
+// Route::resource('/like', LikeController::class)
+// ->middleware(['auth:paid_members', 'verified']);
 
+// Route::put('add_like/{recipe_id}', [likeController::class, 'add_like'])->name('add_like');
+
+Route::put('add_like/{recipe_id}', [likeController::class, 'add_like'])
+    ->name('add_like')
+    ->middleware(['auth:paid_members', 'verified']);
+
+
+// Route::put('/like', function () {
+//     return Inertia::render('add_like/{recipe_id}');
+// })->middleware(['auth:paid_members', 'verified'])->name('add_like');
 
 Route::get('/dashboard', function () {
     return Inertia::render('PaidMember/Dashboard');

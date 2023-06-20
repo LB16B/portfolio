@@ -38,9 +38,9 @@ const showingNavigationDropdown = ref(false);
                 <NavLink :href="route('paid_member.profile.edit')" :active="route().current('paid_member.profile.edit')">
                     アカウント
                 </NavLink>
-                <NavLink :href="route('paid_member.logout')" method="post" :active="route().current('paid_member.logout')">
+                <!-- <NavLink :href="route('paid_member.logout')" method="post" :active="route().current('paid_member.logout')">
                     ログアウト
-                </NavLink>
+                </NavLink> -->
             </nav>
 
             <div class="-mr-2 flex items-center sm:hidden">

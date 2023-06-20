@@ -17,13 +17,13 @@ class Like extends Model
         'recipe_id'
     ];
 
-    public function paid_members()
-    {
-        return $this->belongsTo(PaidMember::class);
-    }
+    // public function paid_members()
+    // {
+    //     return $this->belongsToMany(PaidMember::class);
+    // }
 
-    public function recipes()
-    {
-        return $this->belongsTo(Recipe::class);
-    }
+    // public function recipes()
+    // {
+    //     return $this->belongsToMany(Recipe::class);
+    // }
 }

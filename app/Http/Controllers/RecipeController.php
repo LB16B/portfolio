@@ -136,7 +136,7 @@ class RecipeController extends Controller
     {
         $recipe = Recipe::with(['ageMonthCategory', 'manual', 'ingredient'])->findOrFail($id);
         $likes = Like::where('recipe_id', $recipe->id)->get();
-        $likeCount = $likes->count();
+        $likeCount = $likes->count() - 1;
         // dd($likes);
         return Inertia::render('PaidMember/Recipe/Show', [
             'recipe' => $recipe,

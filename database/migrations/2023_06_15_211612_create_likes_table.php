@@ -15,8 +15,10 @@ return new class extends Migration
     {
         Schema::create('likes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('paid_member_id')->constrained('paid_members')->onDelete('cascade');
-            $table->foreignId('recipe_id')->constrained('recipes')->onDelete('cascade');
+            $table->string('paid_member_id');
+            $table->string('recipe_id');
+            // $table->foreignId('paid_member_id')->constrained('paid_members')->onDelete('cascade');
+            // $table->foreignId('recipe_id')->constrained('recipes')->onDelete('cascade');
             $table->timestamps();
         });
     }

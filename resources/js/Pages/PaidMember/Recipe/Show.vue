@@ -1,6 +1,6 @@
 <script setup>
 import PaidMemberAuthenticatedLayout from '@/Layouts/PaidMemberAuthenticatedLayout.vue';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, defineProps } from 'vue';
 import { Head, Link } from '@inertiajs/vue3';
 import Pagination from '@/Components/Pagination.vue';
 import { Inertia } from '@inertiajs/inertia'
@@ -16,7 +16,7 @@ defineProps({
 
 
 const storeLike = id => {
-    Inertia.put(route('paid_member.like.update', {like: id}), {
+    Inertia.put(route('paid_member.add_like', {recipe_id: id}), {
     })
 }
 </script>
