@@ -61,8 +61,4 @@ class PaidMember extends Authenticatable
         return $this->belongsTo(Recipe::class);
     }
 
-    public function likes() {
-        return $this->hasMany(Like::class);
-    }
-
 }

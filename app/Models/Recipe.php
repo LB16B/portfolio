@@ -50,15 +50,4 @@ class Recipe extends Model
     {
         return $this->hasOne(PaidMember::class);
     }
-
-
-    // public function likes()
-    // {
-    //     return $this->hasMany(Like::class);
-    // }
-
-    // public function isLiked($paid_member_id)
-    // {
-    //     return $this->likes()->where('paid_member_id', $paid_member_id)->exists();
-    // }
 }

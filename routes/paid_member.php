@@ -6,7 +6,7 @@ use App\Http\Controllers\IngredientCategoryController;
 use App\Http\Controllers\AgeMonthCategoryController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\RecipeController;
-use App\Http\Controllers\LikeController;
+use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\ManualController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -45,19 +45,9 @@ Route::resource('/age_month_category', AgeMOnthCategoryController::class)
 Route::resource('/recipe', RecipeController::class)
 ->middleware(['auth:paid_members', 'verified']);
 
-// Route::resource('/like', LikeController::class)
-// ->middleware(['auth:paid_members', 'verified']);
-
-// Route::put('add_like/{recipe_id}', [likeController::class, 'add_like'])->name('add_like');
-
-Route::put('add_like/{recipe_id}', [likeController::class, 'add_like'])
-    ->name('add_like')
+Route::put('bookmark/{recipe_id}', [BookmarkController::class, 'add_bookmark'])
+    ->name('add_bookmark')
     ->middleware(['auth:paid_members', 'verified']);
-
-
-// Route::put('/like', function () {
-//     return Inertia::render('add_like/{recipe_id}');
-// })->middleware(['auth:paid_members', 'verified'])->name('add_like');
 
 Route::get('/dashboard', function () {
     return Inertia::render('PaidMember/Dashboard');

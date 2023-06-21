@@ -6,7 +6,7 @@ use App\Models\Recipe;
 use App\Models\Manual;
 use App\Models\Ingredient;
 use App\Models\PaidMember;
-use App\Models\Like;
+use App\Models\Bookmark;
 use App\Http\Controllers\Controller;
 use App\Models\AgeMonthCategory;
 use App\Models\IngredientCategory;
@@ -53,10 +53,7 @@ class RecipeController extends Controller
         return Inertia::render('PaidMember/Recipe/Create');
     }
 
-    // public function like_store(Recipe $recipe)
-    // {
-       
-    // }
+
 
     public function store(StoreRecipeRequest $request)
     {
@@ -135,13 +132,13 @@ class RecipeController extends Controller
     public function show($id)
     {
         $recipe = Recipe::with(['ageMonthCategory', 'manual', 'ingredient'])->findOrFail($id);
-        $likes = Like::where('recipe_id', $recipe->id)->get();
-        $likeCount = $likes->count() - 1;
-        // dd($likes);
+        $bookmarks = Bookmark::where('recipe_id', $recipe->id)->get();
+        $bookmarkCount = $bookmarks->count();
+        // dd($bookmarks);
         return Inertia::render('PaidMember/Recipe/Show', [
             'recipe' => $recipe,
-            'likes' => $likes,
-            'likeCount' => $likeCount,
+            'bookmarks' => $bookmarks,
+            'bookmarkCount' => $bookmarkCount,
         ]);
     }
 

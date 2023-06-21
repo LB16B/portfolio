@@ -3,10 +3,10 @@
 namespace App\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use App\Models\Like;
+use App\Models\Bookmark;
 use App\Models\User;
 
-class LikePolicy
+class BookmarkPolicy
 {
     use HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class LikePolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Like  $like
+     * @param  \App\Models\Bookmark  $bookmark
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Like $like)
+    public function view(User $user, Bookmark $bookmark)
     {
         //
     }
@@ -48,10 +48,10 @@ class LikePolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Like  $like
+     * @param  \App\Models\Bookmark  $bookmark
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Like $like)
+    public function update(User $user, Bookmark $bookmark)
     {
         //
     }
@@ -60,10 +60,10 @@ class LikePolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Like  $like
+     * @param  \App\Models\Bookmark  $bookmark
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Like $like)
+    public function delete(User $user, Bookmark $bookmark)
     {
         //
     }
@@ -72,10 +72,10 @@ class LikePolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Like  $like
+     * @param  \App\Models\Bookmark  $bookmark
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Like $like)
+    public function restore(User $user, Bookmark $bookmark)
     {
         //
     }
@@ -84,10 +84,10 @@ class LikePolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Like  $like
+     * @param  \App\Models\Bookmark  $bookmark
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Like $like)
+    public function forceDelete(User $user, Bookmark $bookmark)
     {
         //
     }

@@ -8,18 +8,18 @@ import { Inertia } from '@inertiajs/inertia'
 
 defineProps({
     recipe: Object,
-    likes: Array,
-    likeCount: Number,
+    bookmarks: Array,
+    bookmarkCount: Number,
 })
 
-const storeLike = (button) => {
-    Inertia.post('/paid_member/like', button);
+const storeBookmark = (button) => {
+    Inertia.post('/paid_member/bookmark', button);
 }
 
 </script>
 
 <template>
-    いいね数 {{ likeCount }}
+    いいね数 {{ bookmarkCount }}
     <div v-if="$page.props.auth.user.id != recipe.paid_member_id">
         <button @click="storeLike" class="mr-4">いいねする</button>
     </div>
