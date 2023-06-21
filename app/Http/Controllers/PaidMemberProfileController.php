@@ -58,6 +58,6 @@ class PaidMemberProfileController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return Redirect::to('/paid_member/login');
+        return Redirect::to('/paid_member/dashboard');
     }
 }

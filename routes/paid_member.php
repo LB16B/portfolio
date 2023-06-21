@@ -45,8 +45,18 @@ Route::resource('/age_month_category', AgeMOnthCategoryController::class)
 Route::resource('/recipe', RecipeController::class)
 ->middleware(['auth:paid_members', 'verified']);
 
+
+
 Route::put('bookmark/{recipe_id}', [BookmarkController::class, 'add_bookmark'])
     ->name('add_bookmark')
+    ->middleware(['auth:paid_members', 'verified']);
+
+Route::get('/bookmark', [BookmarkController::class, 'bookmark_index'])
+    ->name('bookmark_index')
+    ->middleware(['auth:paid_members', 'verified']);
+
+Route::delete('/bookmark/{recipe_id}', [BookmarkController::class, 'bookmark_destroy'])
+    ->name('bookmark_destroy')
     ->middleware(['auth:paid_members', 'verified']);
 
 Route::get('/dashboard', function () {

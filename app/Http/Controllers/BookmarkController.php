@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bookmark;
+use App\Models\Recipe;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBookmarkRequest;
 use App\Http\Requests\UpdateBookmarkRequest;
 use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class BookmarkController extends Controller
 {
@@ -31,9 +33,25 @@ class BookmarkController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function bookmark_index()
     {
-        //
+        $paid_member = Auth::user();
+        $bookmarks = Bookmark::where('paid_member_id', $paid_member->id)->get();
+        // $recipes = Recipe::where('id', $bookmarks->recipe_id)->get();
+
+        $recipeIds = $bookmarks->pluck('recipe_id')->toArray();
+
+        $recipes = Recipe::whereIn('id', $recipeIds)->get();
+    
+        if ($recipes->isEmpty()) {
+            return Inertia::render('PaidMember/Bookmark/Index', [
+                'recipes' => $recipes,
+            ]);
+        }
+
+        return Inertia::render('PaidMember/Bookmark/Index', [
+            'recipes' => $recipes,
+        ]);
     }
 
     /**
@@ -97,8 +115,14 @@ class BookmarkController extends Controller
      * @param  \App\Models\Bookmark  $bookmark
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Bookmark $bookmark)
+    public function bookmark_destroy($id)
     {
-        //
+        $bookmark = Bookmark::where('recipe_id', $id)
+        ->where('paid_member_id', Auth::id())
+        ->first();
+
+        $bookmark->delete();
+
+        return to_route('paid_member.bookmark_index');
     }
 }

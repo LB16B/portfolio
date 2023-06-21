@@ -32,6 +32,9 @@ const showingNavigationDropdown = ref(false);
                 <NavLink :href="route('paid_member.recipe.index')" :active="route().current('paid_member.recipe.index')">
                     投稿済みレシピ              
                 </NavLink>
+                <NavLink :href="route('paid_member.bookmark_index')" :active="route().current('paid_member.bookmark_index')">
+                    ブックマーク            
+                </NavLink>
                 <NavLink :href="route('paid_member.detail.index')" :active="route().current('paid_member.detail.index')">
                     プロフィール
                 </NavLink>
